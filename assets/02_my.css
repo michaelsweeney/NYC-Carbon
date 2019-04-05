@@ -1,0 +1,26 @@
+.form-control {
+display: block;
+}
+
+
+.input-group-prepend .input-group-text {
+min-width: 90px;
+width: 90px;
+}
+
+h4, h3, h2 {
+text-align: center;
+}
+
+#submit_btn {
+min-width: 125px;
+}
+
+
+
+
+
+
+#figrow1, #figrow2 {
+height: 40vh
+}

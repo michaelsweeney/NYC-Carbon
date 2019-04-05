@@ -1,0 +1,50 @@
+DOB Occupancy groups,Group Name,Examples of Spaces Included,2022-2023,2024-2029,2030-2049,2050
+A,Assembly,"- Motion picture theaters, 
+- symphony, 
+- Concert halls,
+- Television and Radio Studios with an audience,
+- Theaters, 
+- Night clubs,
+- Restaurants Taverns and bar, 
+- Amusement arcades,
+- Art galleries,
+- Bowling alleys,
+- Funeral parlors,
+- Religious houses of worship,
+- Indoor swimming pools,
+- Museums,
+- Skating rinks",0.008886,0.004439,0.0029195,0.0014
+E,Education,"- K-12 Schools, 
+- Academies, 
+- Day care facilities",0.008886,0.004439,0.0029195,0.0014
+H,High Hazard,"- Hazardous material manufacturing,  processing,  generation, and storage",0.008886,0.004439,0.0029195,0.0014
+U,Utility & Misc.,"- Carports,
+- Private garages,
+- Sheds",0.008886,0.004439,0.0029195,0.0014
+B,Business,"- Airport traffic control towers,
+- Ambulatory health care facilities,
+- Outpatient clinic,
+- Medical centers,
+- Electronic data processing,
+- Laboratories,
+- Professional services (architects, attorneys, engineers, etc.)",0.008552,0.00485,0.003125,0.0014
+I,Institutional,"- Adult homes, 
+- Assisted living facilities,
+- Nursing Homes,
+- Prisons,",0.008552,0.00485,0.003125,0.0014
+M,Mercantile,"- Department stores,
+- Drug stores,
+- Markets,
+- Motor fuel-dispensing facilities,
+- Retail or wholesale stores",0.008552,0.00485,0.003125,0.0014
+F,Factory & Industrial,"- Manufacturing facility, 
+- Packaging facility",0.00517,0.001374,0.001387,0.0014
+S,Storage,"- Warehouses,  
+- Storage  rooms,  
+- Distribution  centers",0.00517,0.001374,0.001387,0.0014
+R,Residential,"- College or school student dormitories, 
+- Apartment buildings, 
+- Hotels,
+- Homeless Shelters",0.00701,0.004339,0.0028695,0.0014
+
+
