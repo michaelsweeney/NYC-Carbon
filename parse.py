@@ -396,7 +396,7 @@ def make_carbon_bullet(carbon, co2limit):
             'x1': 2,
             'y1': co2limit.reset_index()['Value'][2],
             'opacity': 0.2,
-            'layer': 'below',
+            'layer': 'below',  
             'line': {
                 'color': 'rgba(128, 128, 128, 1)',
                 'width': 1,
