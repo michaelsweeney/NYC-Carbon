@@ -1,0 +1,69 @@
+PROPERTY TYPE,Occupancy Group
+Office,Business
+ Hospital (General Medical & Surgical),Institutional
+ Other,Unknown
+ Multifamily Housing,Residential
+ College/University,Residential
+ Residence Hall/Dormitory,Residential
+ Not Available,Unknown
+ Urgent Care/Clinic/Other Outpatient,Institutional
+ Medical Office,Business
+ Social/Meeting Hall,Assembly
+ Library,Assembly
+ Senior Care Community,Residential
+ Self-Storage Facility,Storage
+ Strip Mall,Business
+ Bank Branch,Mercantile
+ Retail Store,Mercantile
+ Movie Theater,Assembly
+ K-12 School,Education
+ Enclosed Mall,Mercantile
+ Other - Recreation,Assembly
+ Other - Specialty Hospital,Institutional
+ Financial Office,Business
+ Manufacturing/Industrial Plant,Factory & Industrial
+ Performing Arts,Assembly
+ Other - Lodging/Residential,Residential
+ Hotel,Residential
+ Parking,Utility & Misc.
+ Data Center,Business
+ Non-Refrigerated Warehouse,Storage
+ Other - Entertainment/Public Assembly,Assembly
+ Restaurant,Assembly
+ Worship Facility,Assembly
+ Distribution Center,Factory & Industrial
+ Other - Mall,Mercantile
+ Other - Education,Education
+ Ambulatory Surgical Center,Business
+ Museum,Assembly
+ Automobile Dealership,Mercantile
+ Laboratory,Institutional
+ Residential Care Facility,Institutional
+ Outpatient Rehabilitation/Physical Therapy,Institutional
+ Pre-school/Daycare,Education
+ Supermarket/Grocery Store,Mercantile
+ Mailing Center/Post Office,Mercantile
+ Other - Technology/Science,Institutional
+ Courthouse,Assembly
+ Wholesale Club/Supercenter,Mercantile
+ Other - Services,Business
+ Other - Public Services,Business
+ Refrigerated Warehouse,Factory & Industrial
+ Adult Education,Education
+" Repair Services (Vehicle, Shoe, Locksmith, etc.)",Business
+ Food Service,Mercantile
+ Convenience Store without Gas Station,Mercantile
+ Office,Business
+ Other - Restaurant/Bar,Assembly
+" Personal Services (Health/Beauty, Dry Cleaning, etc.)",Mercantile
+ Fitness Center/Health Club/Gym,Assembly
+ Swimming Pool,Assembly
+ Other - Utility,Factory & Industrial
+ Fast Food Restaurant,Mercantile
+ Food Sales,Mercantile
+ Vocational School,Education
+ Bar/Nightclub,Assembly
+ Fire Station,Institutional
+ Bowling Alley,Assembly
+ Energy/Power Station,Factory & Industrial
+ ,

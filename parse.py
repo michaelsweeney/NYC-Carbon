@@ -15,17 +15,19 @@ import plotly.graph_objs as go
 limits = pd.read_csv('nyc_carbon_limits.csv')
 limit_dict = limits
 limit_dict.index = limits['DOB Occupancy groups']
-limit_dict = limits[['2022-2023', '2024-2029', '2030-2049', '2050']]
+limit_dict = limits[['2024-2029', '2030-2034', '2035-2050 (est)']].astype(float)
 limit_dict = limit_dict.T.to_dict()
 
 piedims = 350
 piecolors = ['rgb(56, 151, 170)', 'rgb(83, 224, 120)', 'rgb(242, 224, 109)']
 
+
+autosize=False
 # static dictionaries/lookups
 carbon_dict = {
     'Elec': 0.000288962,  # tCO2 / kWh
     'Gas': 0.005311,  # tCO2 / Therm
-    'Steam': 0.0064,  # tCO2/MMBtu (from 66.4 kg/MMBtu)
+    'Steam': 0.04493,  # tCO2/MMBtu (from 66.4 kg/MMBtu)
 }
 kbtu_dict = {  # convert to kbtu
     'Elec': 3.412,
@@ -137,7 +139,7 @@ class Bldg:
 
 
 def make_pie_subplots(cost, carbon, eui):
-    cost_trace = go.Pie(values=cost['Value'],
+    cost_trace = go.Pie(values=cost['Value'].round(0),
                         labels=cost['SubTable'],
                         hole=0.5,
                         domain={'x': [0.0, 0.3],
@@ -145,8 +147,10 @@ def make_pie_subplots(cost, carbon, eui):
                         text=carbon['SubTable'],
                         marker={'colors': piecolors},
                         showlegend=False,
+                        hoverinfo='label+value+percent',
+
                         )
-    carbon_trace = go.Pie(values=carbon['Value'],
+    carbon_trace = go.Pie(values=carbon['Value'].round(0),
                           labels=carbon['SubTable'],
                           text=carbon['SubTable'],
                           hole=0.5,
@@ -154,9 +158,10 @@ def make_pie_subplots(cost, carbon, eui):
                                   'y': [0, 1]},
                           marker={'colors': piecolors},
                           showlegend=False,
+                          hoverinfo='label+value+percent'
                           )
 
-    eui_trace = go.Pie(values=eui['Value'],
+    eui_trace = go.Pie(values=eui['Value'].round(0),
                        labels=cost['SubTable'],
                        text=carbon['SubTable'],
                        hole=0.5,
@@ -165,13 +170,14 @@ def make_pie_subplots(cost, carbon, eui):
 
                        marker={'colors': piecolors},
                        showlegend=False,
+                       hoverinfo='label+value+percent'
                        )
 
     layout = go.Layout(
                        font={'family': 'Futura LT BT'},
                        paper_bgcolor='rgba(0,0,0,0)',
                        plot_bgcolor='rgba(0,0,0,0)',
-                       autosize=False,
+                       autosize=autosize,
                        width=700,
                        height=300,
 
@@ -199,7 +205,7 @@ def make_pie_subplots(cost, carbon, eui):
                                'align': 'left',
                            },
                            {
-                               'x': 0.88,
+                               'x': 0.94,
                                'y': 1.555,
                                'xref': 'paper',
                                'yref': 'paper',
@@ -210,90 +216,15 @@ def make_pie_subplots(cost, carbon, eui):
                            },
                        ]
                        )
-
-    # height=piedims,
-    # width=piedims
-
     fig = go.Figure([cost_trace, carbon_trace, eui_trace], layout)
-
-    # fig = tools.make_subplots(1, 3, subplot_titles=['Annual Energy Use Intensity by Fuel Type (kbtu/sf/yr)',
-    #                                                 'Annual Energy Cost by Fuel Type ($)',
-    #                                                 'Annual Carbon Emissions by Fuel Type (tCO2/yr)',
-    #                                                 ])
-    # fig.add_trace(eui_trace, 1, 1)
-    # fig.add_trace(cost_trace, 1, 2)
-    # fig.add_trace(carbon_trace, 1, 3)
     return fig
 
 
-#
-# def make_pie_charts(cost, carbon, eui):
-#
-#     # cost pie
-#     cost_pie = go.Pie(values=cost['Value'],
-#                       labels=cost['SubTable'],
-#                       hole=0.5,
-#                       text=carbon['SubTable'],
-#                       marker={'colors': piecolors},
-#                       showlegend=False
-#                       )
-#
-#     layout = go.Layout(title='Annual Energy Cost by Fuel Type ($)',
-#                        font={'family': 'Futura LT BT'},
-#                        autosize=False,
-#                        height=piedims,
-#                        width=piedims,
-#                        paper_bgcolor='rgba(0,0,0,0)',
-#                        plot_bgcolor='rgba(0,0,0,0)',
-#                        )
-#     cost_fig = go.Figure([cost_pie], layout)
-#
-#     # carbon pie
-#     carbon_pie = go.Pie(values=carbon['Value'],
-#                         labels=carbon['SubTable'],
-#                         text=carbon['SubTable'],
-#                         hole=0.5,
-#                         marker={'colors': piecolors},
-#                         showlegend=False
-#                         )
-#
-#     layout = go.Layout(title='Annual Carbon Emissions by Fuel Type (tCO2/yr)',
-#                        font={'family': 'Futura LT BT'},
-#                        paper_bgcolor='rgba(0,0,0,0)',
-#                        plot_bgcolor='rgba(0,0,0,0)',
-#         autosize=False,
-#         height=piedims,
-#         width=piedims
-#                        )
-#     carbon_fig = go.Figure([carbon_pie], layout)
-#
-#     # eui
-#     eui_pie = go.Pie(values=eui['Value'],
-#                      labels=eui['SubTable'],
-#                      text=carbon['SubTable'],
-#                      hole=0.5,
-#                      marker={'colors': piecolors},
-#                      showlegend=False,
-#
-#
-#                      )
-#     layout = go.Layout(title='Annual Energy Use Intensity by Fuel Type (kbtu/sf/yr)',
-#                        font={'family': 'Futura LT BT'},
-#                        paper_bgcolor='rgba(0,0,0,0)',
-#                        plot_bgcolor='rgba(0,0,0,0)',
-#                        autosize=False,
-#                        height=piedims,
-#                        width=piedims
-#                        )
-#
-#     eui_fig = go.Figure([eui_pie], layout)
-#     return (cost_fig, eui_fig, carbon_fig)
 
-
-def make_carbon_bullet(carbon, co2limit):
+def make_carbon_bullet(carbon, co2limit, fine):
     carbon_traces = [
         go.Bar(x=[1],
-               y=[carbon['Value'].sum()],
+               y=[round(carbon['Value'].sum())],
                name='Carbon',
                width=0.75,
                opacity=1.0,
@@ -304,15 +235,20 @@ def make_carbon_bullet(carbon, co2limit):
     layout = go.Layout(barmode='overlay',
                        font={'family': 'Futura LT BT'},
                        legend={'x': 1.07},
-                       autosize=False,
-                       width=400,
-                       height=700,
+                       autosize=autosize,
+                       width=400, #todo margin here?
+                       height=725,
                        xaxis={'showticklabels': False,
                               'showgrid': False,
                               'fixedrange': True},
 
-                       title='Annual Building CO2 Intensity vs. NYC Fine Thresholds',
+                       title=go.layout.Title(text='Building CO2 Intensity<br>vs. NYC Fine Thresholds',
+                                             x=0.38,
+                                             xref='container',
+                                             xanchor='center'),
+
                        yaxis={'showgrid': False,
+                              'showline': False,
                               'zeroline': False,
                               'title': "Metric Tons CO2",
                               'fixedrange': True},
@@ -326,7 +262,7 @@ def make_carbon_bullet(carbon, co2limit):
         {
             'x': 3,
             'y': co2limit.reset_index()['Value'][0],
-            'text': co2limit.reset_index()['SubTable'][0],
+            'text': "{0}<br>Fine: ${1}".format(co2limit.reset_index()['SubTable'][0], "{:,}".format(round(list(fine['Value'])[0]))),
             'showarrow': False,
             'align': 'left',
             'width': 100,
@@ -334,7 +270,7 @@ def make_carbon_bullet(carbon, co2limit):
         {
             'x': 3,
             'y': co2limit.reset_index()['Value'][1],
-            'text': co2limit.reset_index()['SubTable'][1],
+            'text': "{0}<br>Fine: ${1}".format(co2limit.reset_index()['SubTable'][1], "{:,}".format(round(list(fine['Value'])[1]))),
             'showarrow': False,
             'align': 'left',
             'width': 100,
@@ -342,19 +278,19 @@ def make_carbon_bullet(carbon, co2limit):
         {
             'x': 3,
             'y': co2limit.reset_index()['Value'][2],
-            'text': co2limit.reset_index()['SubTable'][2],
+            'text': "{0}<br>Fine: ${1}".format(co2limit.reset_index()['SubTable'][2], "{:,}".format(round(list(fine['Value'])[2]))),
             'showarrow': False,
             'align': 'left',
             'width': 100,
         },
-        {
-            'x': 3,
-            'y': co2limit.reset_index()['Value'][3],
-            'text': co2limit.reset_index()['SubTable'][3],
-            'showarrow': False,
-            'align': 'left',
-            'width': 100,
-        }
+        # {
+        #     'x': 3,
+        #     'y': co2limit.reset_index()['Value'][3],
+        #     'text': co2limit.reset_index()['SubTable'][3],
+        #     'showarrow': False,
+        #     'align': 'left',
+        #     'width': 100,
+        # }
     ]
 
     })
@@ -403,19 +339,20 @@ def make_carbon_bullet(carbon, co2limit):
             },
             'fillcolor': 'rgba(255, 25, 0, 1)', },
 
-        {
-            'type': 'rect',
-            'x0': 0,
-            'y0': 0,
-            'x1': 2,
-            'y1': co2limit.reset_index()['Value'][3],
-            'opacity': 0.2,
-            'layer': 'below',
-            'line': {
-                'color': 'rgba(128, 128, 128, 1)',
-                'width': 1,
-            },
-            'fillcolor': 'rgba(255, 0, 0, 1)', }, ]
+        # {
+        #     'type': 'rect',
+        #     'x0': 0,
+        #     'y0': 0,
+        #     'x1': 2,
+        #     'y1': co2limit.reset_index()['Value'][3],
+        #     'opacity': 0.2,
+        #     'layer': 'below',
+        #     'line': {
+        #         'color': 'rgba(128, 128, 128, 1)',
+        #         'width': 1,
+        #     },
+        #     'fillcolor': 'rgba(255, 0, 0, 1)', }
+        ]
     })
 
     figure = go.Figure(data, layout)
@@ -426,9 +363,9 @@ def make_cost_bar(fine, cost):
     data = []
 
     try:
-        elec_costs = cost.iloc[0, :]['Value']
+        elec_costs = round(cost.iloc[0, :]['Value'].round())
         elec_traces = go.Bar(x=fine.SubTable,
-                             y=[elec_costs] * len(fine.SubTable),
+                             y=[round(elec_costs)] * len(fine.SubTable),
                              name='Elec ($)',
                              marker={'color': piecolors[0]})
         data.append(elec_traces)
@@ -436,9 +373,9 @@ def make_cost_bar(fine, cost):
         pass
 
     try:
-        gas_costs = cost.iloc[1, :]['Value']
+        gas_costs = round(cost.iloc[1, :]['Value'].round())
         gas_traces = go.Bar(x=fine.SubTable,
-                            y=[gas_costs] * len(fine.SubTable),
+                            y=[round(gas_costs)] * len(fine.SubTable),
                             name='Gas ($)',
                             marker={'color': piecolors[1]})
         data.append(gas_traces)
@@ -446,9 +383,9 @@ def make_cost_bar(fine, cost):
         pass
 
     try:
-        steam_costs = cost.iloc[2, :]['Value']
+        steam_costs = round(cost.iloc[2, :]['Value'].round())
         steam_traces = go.Bar(x=fine.SubTable,
-                              y=[steam_costs] * len(fine.SubTable),
+                              y=[round(steam_costs)] * len(fine.SubTable),
                               name='Steam ($)',
                               marker={'color': piecolors[2]})
         data.append(steam_traces)
@@ -456,7 +393,7 @@ def make_cost_bar(fine, cost):
         pass
 
     fine_traces = go.Bar(x=fine.SubTable,
-                         y=fine.Value,
+                         y=round(fine.Value),
                          name='Carbon Fine ($)',
                          marker={'color': 'rgb(200, 83, 94)'}
                          )
@@ -464,7 +401,7 @@ def make_cost_bar(fine, cost):
     data.append(fine_traces)
 
     layout = go.Layout(barmode='stack',
-                       autosize=False,
+                       autosize=autosize,
                        width=700,
                        height=400,
                        title='Annual Building Energy Cost Over Time',
@@ -472,8 +409,10 @@ def make_cost_bar(fine, cost):
                        legend={'orientation': 'h',
                                'x': 0.2,
                                'y': -0.1},
-                       xaxis={'fixedrange': True},
-                       yaxis={'fixedrange': True},
+                       xaxis={'fixedrange': True,
+                              'showgrid': False},
+                       yaxis={'fixedrange': True,
+                              'showgrid': False},
                        paper_bgcolor='rgba(0,0,0,0)',
                        plot_bgcolor='rgba(0,0,0,0)',
                        )

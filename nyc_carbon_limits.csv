@@ -1,50 +1,16 @@
-DOB Occupancy groups,Group Name,Examples of Spaces Included,2022-2023,2024-2029,2030-2049,2050
-A,Assembly,"- Motion picture theaters, 
-- symphony, 
-- Concert halls,
-- Television and Radio Studios with an audience,
-- Theaters, 
-- Night clubs,
-- Restaurants Taverns and bar, 
-- Amusement arcades,
-- Art galleries,
-- Bowling alleys,
-- Funeral parlors,
-- Religious houses of worship,
-- Indoor swimming pools,
-- Museums,
-- Skating rinks",0.008886,0.004439,0.0029195,0.0014
-E,Education,"- K-12 Schools, 
-- Academies, 
-- Day care facilities",0.008886,0.004439,0.0029195,0.0014
-H,High Hazard,"- Hazardous material manufacturing,  processing,  generation, and storage",0.008886,0.004439,0.0029195,0.0014
-U,Utility & Misc.,"- Carports,
-- Private garages,
-- Sheds",0.008886,0.004439,0.0029195,0.0014
-B,Business,"- Airport traffic control towers,
-- Ambulatory health care facilities,
-- Outpatient clinic,
-- Medical centers,
-- Electronic data processing,
-- Laboratories,
-- Professional services (architects, attorneys, engineers, etc.)",0.008552,0.00485,0.003125,0.0014
-I,Institutional,"- Adult homes, 
-- Assisted living facilities,
-- Nursing Homes,
-- Prisons,",0.008552,0.00485,0.003125,0.0014
-M,Mercantile,"- Department stores,
-- Drug stores,
-- Markets,
-- Motor fuel-dispensing facilities,
-- Retail or wholesale stores",0.008552,0.00485,0.003125,0.0014
-F,Factory & Industrial,"- Manufacturing facility, 
-- Packaging facility",0.00517,0.001374,0.001387,0.0014
-S,Storage,"- Warehouses,  
-- Storage  rooms,  
-- Distribution  centers",0.00517,0.001374,0.001387,0.0014
-R,Residential,"- College or school student dormitories, 
-- Apartment buildings, 
-- Hotels,
-- Homeless Shelters",0.00701,0.004339,0.0028695,0.0014
-
-
+DOB Occupancy groups,Group Name,2024-2029,2030-2034,2035-2050 (est)
+A,Assembly,0.01074,0.0042,0.001642458
+B (healthcare),"civic admin for emergency, non production lab, ambulatory facility",0.02381,0.01193,0.005977526
+B (normal),,0.00846,0.00453,0.002425638
+E,Education,0.00758,0.00344,0.001561161
+F,,0.00574,0.00167,0.000485871
+H,,0.02381,0.01193,0.005977526
+I-1,,0.01138,0.00598,0.00314239
+I-2,,0.02381,0.01193,0.005977526
+I-3,,0.02381,0.01193,0.005977526
+I-4,,0.00758,0.00344,0.001561161
+M,,0.01181,0.00403,0.001375182
+R-1,,0.00987,0.00526,0.002803202
+R-2,,0.00675,0.00407,0.002454059
+S,,0.00426,0.0011,0.000284038
+U,,0.00426,0.0011,0.000284038
