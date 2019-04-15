@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="04c763a6-4a3b-48df-89ac-06afb8c121a8" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/parse.py" beforeDir="false" afterPath="$PROJECT_DIR$/parse.py" afterDir="false" />
-    </list>
+    <list default="true" id="04c763a6-4a3b-48df-89ac-06afb8c121a8" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -113,8 +111,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="427" />
-    <option name="y" value="508" />
+    <option name="x" value="-7" />
+    <option name="y" value="2" />
     <option name="width" value="1452" />
     <option name="height" value="865" />
   </component>
@@ -222,7 +220,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="427" y="508" width="1452" height="865" extended-state="0" />
+    <frame x="-7" y="2" width="1452" height="865" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.13509749" />
