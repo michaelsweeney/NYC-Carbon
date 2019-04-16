@@ -17,7 +17,7 @@ app.config.suppress_callback_exceptions = True
 config = {'showLink': False,
           'displayModeBar': False}
 
-app.title = "NYC 80x50 energy + performance estimator"
+app.title = "NYC 80x50 Energy + Performance estimator"
 
 
 app.layout = dbc.Container([

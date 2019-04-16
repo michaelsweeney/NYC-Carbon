@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
+<<<<<<< Updated upstream
 <<<<<<< HEAD
     <list default="true" id="04c763a6-4a3b-48df-89ac-06afb8c121a8" name="Default Changelist" comment="" />
 =======
@@ -15,6 +16,12 @@
       <change beforePath="$PROJECT_DIR$/parse.py" beforeDir="false" afterPath="$PROJECT_DIR$/parse.py" afterDir="false" />
     </list>
 >>>>>>> ca5a70981539e877fdea3035a990f6f7a4a12eac
+=======
+    <list default="true" id="04c763a6-4a3b-48df-89ac-06afb8c121a8" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
+    </list>
+>>>>>>> Stashed changes
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,6 +31,7 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
+<<<<<<< Updated upstream
         <entry file="file://$PROJECT_DIR$/assets/02_my.css">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="346">
@@ -48,19 +56,20 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app.py">
 <<<<<<< HEAD
+=======
+        <entry file="file://$PROJECT_DIR$/assets/03_listbox.css">
+>>>>>>> Stashed changes
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1462">
-              <caret line="111" column="21" selection-start-line="111" selection-start-column="21" selection-end-line="111" selection-end-column="21" />
-              <folding>
-                <element signature="e#0#17#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="531">
+              <caret line="127" column="21" selection-start-line="127" selection-start-column="21" selection-end-line="127" selection-end-column="21" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/parse.py">
+        <entry file="file://$PROJECT_DIR$/app.py">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< Updated upstream
             <state relative-caret-position="37">
               <caret line="398" column="31" selection-start-line="398" selection-start-column="31" selection-end-line="398" selection-end-column="31" />
 =======
@@ -82,6 +91,10 @@
             <state relative-caret-position="267">
               <caret line="413" column="49" lean-forward="true" selection-start-line="413" selection-start-column="49" selection-end-line="413" selection-end-column="49" />
 >>>>>>> ca5a70981539e877fdea3035a990f6f7a4a12eac
+=======
+            <state relative-caret-position="526">
+              <caret line="82" lean-forward="true" selection-start-line="82" selection-end-line="82" />
+>>>>>>> Stashed changes
               <folding>
                 <element signature="e#0#17#0" expanded="true" />
               </folding>
@@ -89,6 +102,7 @@
           </provider>
         </entry>
       </file>
+<<<<<<< Updated upstream
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/assets/03_listbox.css">
           <provider selected="true" editor-type-id="text-editor">
@@ -102,6 +116,8 @@
           </provider>
         </entry>
       </file>
+=======
+>>>>>>> Stashed changes
     </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
@@ -119,6 +135,7 @@
       <find>select-cont</find>
       <find>bldg_are</find>
       <find>prepend</find>
+<<<<<<< Updated upstream
       <find>annual building co</find>
       <find>pie_sum</find>
       <find>svg</find>
@@ -143,6 +160,24 @@
       <find>annual</find>
       <find>annual building</find>
       <find>.subtabl</find>
+=======
+      <find>input-group-text bldg_type_header</find>
+      <find>bldg_type_header</find>
+      <find>annual cons</find>
+      <find>style</find>
+      <find>webk</find>
+      <find>title</find>
+      <find>size</find>
+      <find>600</find>
+      <find>br</find>
+      <find>height</find>
+      <find>domain</find>
+      <find>body</find>
+      <find>textpos</find>
+      <find>rgb</find>
+      <find>navbar</find>
+      <find>annual cost</find>
+>>>>>>> Stashed changes
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -156,18 +191,28 @@
 =======
 >>>>>>> ca5a70981539e877fdea3035a990f6f7a4a12eac
         <option value="$PROJECT_DIR$/index.py" />
+<<<<<<< Updated upstream
         <option value="$PROJECT_DIR$/app2.py" />
         <option value="$PROJECT_DIR$/dash_trial.py" />
         <option value="$PROJECT_DIR$/assets/02_my.css" />
         <option value="$PROJECT_DIR$/app.py" />
+=======
+>>>>>>> Stashed changes
         <option value="$PROJECT_DIR$/parse.py" />
+        <option value="$PROJECT_DIR$/app.py" />
       </list>
     </option>
   </component>
+<<<<<<< Updated upstream
 <<<<<<< HEAD
   <component name="ProjectFrameBounds">
     <option name="x" value="-7" />
     <option name="y" value="2" />
+=======
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="1761" />
+    <option name="y" value="-8" />
+>>>>>>> Stashed changes
     <option name="width" value="1452" />
     <option name="height" value="865" />
 =======
@@ -183,6 +228,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -199,7 +245,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -240,6 +285,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+<<<<<<< Updated upstream
     <configuration name="dash_trial" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="NYC-Carbon" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -261,6 +307,8 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+=======
+>>>>>>> Stashed changes
     <configuration name="index (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="NYC-Carbon" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -306,7 +354,11 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.app" />
+<<<<<<< Updated upstream
         <item itemvalue="Python.dash_trial" />
+=======
+        <item itemvalue="Python.index" />
+>>>>>>> Stashed changes
         <item itemvalue="Python.index (1)" />
       </list>
     </recent_temporary>
@@ -325,6 +377,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
+<<<<<<< Updated upstream
 <<<<<<< HEAD
     <frame x="-7" y="2" width="1452" height="865" extended-state="0" />
     <editor active="true" />
@@ -336,6 +389,12 @@
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.13472222" />
 >>>>>>> ca5a70981539e877fdea3035a990f6f7a4a12eac
+=======
+    <frame x="1912" y="-8" width="1696" height="1026" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.11547619" />
+>>>>>>> Stashed changes
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -394,6 +453,7 @@
     <entry file="file://$PROJECT_DIR$/app_void.py" />
     <entry file="file://$PROJECT_DIR$/app" />
     <entry file="file://$PROJECT_DIR$/index.py" />
+<<<<<<< Updated upstream
     <entry file="file://$PROJECT_DIR$/dash_trial.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="480">
@@ -421,22 +481,31 @@
         <state relative-caret-position="435">
           <caret line="323" selection-start-line="323" selection-end-line="323" />
 >>>>>>> ca5a70981539e877fdea3035a990f6f7a4a12eac
+=======
+    <entry file="file://$PROJECT_DIR$/assets/02_my.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="718">
+          <caret line="123" selection-start-line="123" selection-end-line="123" />
+>>>>>>> Stashed changes
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/02_my.css">
+    <entry file="file://$PROJECT_DIR$/env/Lib/site-packages/dash/development/base_component.py">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< Updated upstream
         <state relative-caret-position="346">
 <<<<<<< HEAD
           <caret line="123" selection-start-line="123" selection-end-line="123" />
+=======
+        <state relative-caret-position="569">
+          <caret line="323" selection-start-line="323" selection-end-line="323" />
+>>>>>>> Stashed changes
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app_void.py" />
-    <entry file="file://$PROJECT_DIR$/app" />
-    <entry file="file://$PROJECT_DIR$/index.py" />
     <entry file="file://$PROJECT_DIR$/parse.py">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< Updated upstream
         <state relative-caret-position="37">
           <caret line="398" column="31" selection-start-line="398" selection-start-column="31" selection-end-line="398" selection-end-column="31" />
 =======
@@ -449,6 +518,10 @@
         <state relative-caret-position="323">
           <caret line="114" column="36" lean-forward="true" selection-start-line="114" selection-start-column="36" selection-end-line="114" selection-end-column="36" />
 >>>>>>> ca5a70981539e877fdea3035a990f6f7a4a12eac
+=======
+        <state relative-caret-position="144">
+          <caret line="79" column="28" lean-forward="true" selection-start-line="79" selection-start-column="28" selection-end-line="79" selection-end-column="28" />
+>>>>>>> Stashed changes
           <folding>
             <element signature="e#0#17#0" expanded="true" />
             <element signature="e#701#818#0" />
@@ -457,6 +530,7 @@
         </state>
       </provider>
     </entry>
+<<<<<<< Updated upstream
     <entry file="file://$PROJECT_DIR$/parse.py">
       <provider selected="true" editor-type-id="text-editor">
 <<<<<<< HEAD
@@ -466,6 +540,19 @@
         <state relative-caret-position="267">
           <caret line="413" column="49" lean-forward="true" selection-start-line="413" selection-start-column="49" selection-end-line="413" selection-end-column="49" />
 >>>>>>> ca5a70981539e877fdea3035a990f6f7a4a12eac
+=======
+    <entry file="file://$PROJECT_DIR$/assets/03_listbox.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="531">
+          <caret line="127" column="21" selection-start-line="127" selection-start-column="21" selection-end-line="127" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="526">
+          <caret line="82" lean-forward="true" selection-start-line="82" selection-end-line="82" />
+>>>>>>> Stashed changes
           <folding>
             <element signature="e#0#17#0" expanded="true" />
           </folding>
