@@ -109,18 +109,15 @@ background-color: rgb(237, 244, 255);
 vertical-align: center !important;
 }
 
-
 #sidenav {
 margin-top: 1%;
 vertical-align: middle;
 height: 100vh;
 }
 
-
 #bldg_area_group{
 padding-top: 10px;
 }
-
 
 
 #body {
@@ -132,38 +129,29 @@ justify-self: center !important;
 }
 
 
-
 #cost_pie_col {
 z-index: 1;
 overflow: hidden;
-
 }
 
 #bullet_bar .main-svg {
 margin-right: 0;
 width: 200;
 overflow: visible;
-
 }
 
 #bullet_bar .svg_container {
 width: 200 !important;
 }
-
 #cost_toggle {
 font-size: .9em;
 }
-
 #cost_toggle{
 margin-top: 5px;
 }
-
-
 .navbar .row{
 width: 100% !important;
 }
-
-
 
 
 
