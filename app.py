@@ -19,7 +19,6 @@ config = {'showLink': False,
 
 app.title = "NYC 80x50 Energy + Performance estimator"
 
-
 app.layout = dbc.Container([
     dbc.Navbar([
         dbc.Row(dbc.Col(html.H4("AKF Energy + Performance NYC Carbon Fine Calculator", id='title'), width=12)),
@@ -92,7 +91,11 @@ app.layout = dbc.Container([
                           values=['Y']
                           ),
             html.Br(),
-            dbc.Button('Submit', id='submit_btn')
+            dbc.Button('Submit', id='submit_btn'),
+
+            html.Div(id='link_body', children=[
+                html.A([html.Div('AKF Group')], href='http://akfgroup.com/'),
+                html.A([html.Div('AKF Energy + Performance')], href='https://www.akf-energyshift.com/'), ]),
 
         ], width=2),
 
@@ -194,4 +197,3 @@ if __name__ == "__main__":
     # url = 'http://127.0.0.1:{0}'.format(port)
     # webbrowser.get(chrome_path).open(url)
     app.run_server(debug=True, port=port, dev_tools_hot_reload=True)
-

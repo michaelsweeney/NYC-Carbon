@@ -159,9 +159,15 @@ margin-top: 5px;
 }
 
 
-
-
 .navbar .row{
 width: 100% !important;
 }
 
+
+
+
+
+#link_body {
+  position: absolute;
+  bottom: 13%;
+}
