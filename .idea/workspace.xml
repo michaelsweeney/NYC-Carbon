@@ -1,7 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="04c763a6-4a3b-48df-89ac-06afb8c121a8" name="Default Changelist" comment="" />
+=======
+    <list default="true" id="04c763a6-4a3b-48df-89ac-06afb8c121a8" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/dash_trial.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/NYC-Carbon.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/NYC-Carbon.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/02_my.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/02_my.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nyc_carbon_limits.csv" beforeDir="false" afterPath="$PROJECT_DIR$/nyc_carbon_limits.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/parse.py" beforeDir="false" afterPath="$PROJECT_DIR$/parse.py" afterDir="false" />
+    </list>
+>>>>>>> ca5a70981539e877fdea3035a990f6f7a4a12eac
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -14,7 +27,11 @@
         <entry file="file://$PROJECT_DIR$/assets/02_my.css">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="346">
+<<<<<<< HEAD
               <caret line="123" selection-start-line="123" selection-end-line="123" />
+=======
+              <caret line="155" lean-forward="true" selection-start-line="155" selection-end-line="155" />
+>>>>>>> ca5a70981539e877fdea3035a990f6f7a4a12eac
             </state>
           </provider>
         </entry>
@@ -30,6 +47,7 @@
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app.py">
+<<<<<<< HEAD
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1462">
               <caret line="111" column="21" selection-start-line="111" selection-start-column="21" selection-end-line="111" selection-end-column="21" />
@@ -45,6 +63,25 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="37">
               <caret line="398" column="31" selection-start-line="398" selection-start-column="31" selection-end-line="398" selection-end-column="31" />
+=======
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="323">
+              <caret line="114" column="36" lean-forward="true" selection-start-line="114" selection-start-column="36" selection-end-line="114" selection-end-column="36" />
+              <folding>
+                <element signature="e#0#17#0" expanded="true" />
+                <element signature="e#701#818#0" />
+                <element signature="e#921#4297#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/parse.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="267">
+              <caret line="413" column="49" lean-forward="true" selection-start-line="413" selection-start-column="49" selection-end-line="413" selection-end-column="49" />
+>>>>>>> ca5a70981539e877fdea3035a990f6f7a4a12eac
               <folding>
                 <element signature="e#0#17#0" expanded="true" />
               </folding>
@@ -56,45 +93,56 @@
         <entry file="file://$PROJECT_DIR$/assets/03_listbox.css">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="244">
+<<<<<<< HEAD
               <caret line="127" column="21" selection-start-line="127" selection-start-column="21" selection-end-line="127" selection-end-column="21" />
+=======
+              <caret line="127" column="21" lean-forward="true" selection-start-line="127" selection-start-column="21" selection-end-line="127" selection-end-column="21" />
+>>>>>>> ca5a70981539e877fdea3035a990f6f7a4a12eac
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>dbc.Row</find>
-      <find>classname</find>
-      <find>&gt;</find>
-      <find>cost_bar</find>
-      <find>width</find>
-      <find>autosize</find>
-      <find>bullet</find>
-      <find>dict</find>
-      <find>try_float</find>
-      <find>use def</find>
-      <find>make_pie</find>
-      <find>pie_char</find>
-      <find>xaxis</find>
+      <find>overflow</find>
+      <find>px</find>
+      <find>building type</find>
+      <find>select-cont</find>
+      <find>bldg_are</find>
       <find>prepend</find>
-      <find>input-group-text bldg_type_header</find>
-      <find>bldg_type_header</find>
-      <find>annual cons</find>
-      <find>style</find>
-      <find>webk</find>
-      <find>annual cost</find>
-      <find>title</find>
-      <find>size</find>
-      <find>600</find>
-      <find>br</find>
-      <find>height</find>
-      <find>domain</find>
+      <find>annual building co</find>
+      <find>pie_sum</find>
+      <find>svg</find>
+      <find>svg-container</find>
+      <find>bullet</find>
+      <find>main-svg</find>
+      <find>400</find>
+      <find>bullet_</find>
+      <find>overfl</find>
+      <find>eui (kbtu</find>
+      <find>button</find>
+      <find>annotations</find>
+      <find>go.pie</find>
+      <find>fine</find>
       <find>body</find>
-      <find>textpos</find>
-      <find>rgb</find>
-      <find>navbar</find>
+      <find>vh</find>
+      <find>100vh</find>
+      <find>height</find>
+      <find>bullet_c</find>
+      <find>b (health</find>
+      <find>.format</find>
+      <find>annual</find>
+      <find>annual building</find>
+      <find>.subtabl</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -103,18 +151,32 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
+<<<<<<< HEAD
         <option value="$PROJECT_DIR$/assets/02_my.css" />
+=======
+>>>>>>> ca5a70981539e877fdea3035a990f6f7a4a12eac
         <option value="$PROJECT_DIR$/index.py" />
+        <option value="$PROJECT_DIR$/app2.py" />
+        <option value="$PROJECT_DIR$/dash_trial.py" />
+        <option value="$PROJECT_DIR$/assets/02_my.css" />
         <option value="$PROJECT_DIR$/app.py" />
         <option value="$PROJECT_DIR$/parse.py" />
       </list>
     </option>
   </component>
+<<<<<<< HEAD
   <component name="ProjectFrameBounds">
     <option name="x" value="-7" />
     <option name="y" value="2" />
     <option name="width" value="1452" />
     <option name="height" value="865" />
+=======
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="132" />
+    <option name="y" value="-16" />
+    <option name="width" value="1460" />
+    <option name="height" value="920" />
+>>>>>>> ca5a70981539e877fdea3035a990f6f7a4a12eac
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -142,7 +204,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="settings.editor.selected.configurable" value="preferences.fileTypes" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -156,7 +218,49 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.index">
+  <component name="RunManager" selected="Python.app">
+    <configuration name="app" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="NYC-Carbon" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/app.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="dash_trial" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="NYC-Carbon" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/dash_trial.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="index (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="NYC-Carbon" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -178,7 +282,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="index" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="index" type="PythonConfigurationType" factoryName="Python">
       <module name="NYC-Carbon" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -201,7 +305,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.index" />
+        <item itemvalue="Python.app" />
+        <item itemvalue="Python.dash_trial" />
         <item itemvalue="Python.index (1)" />
       </list>
     </recent_temporary>
@@ -220,15 +325,26 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
+<<<<<<< HEAD
     <frame x="-7" y="2" width="1452" height="865" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.13509749" />
+=======
+    <frame x="-8" y="-8" width="1456" height="876" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.13472222" />
+>>>>>>> ca5a70981539e877fdea3035a990f6f7a4a12eac
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3287858" />
+<<<<<<< HEAD
       <window_info anchor="bottom" id="Run" order="2" weight="0.30369356" />
+=======
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.2991914" />
+>>>>>>> ca5a70981539e877fdea3035a990f6f7a4a12eac
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -241,6 +357,17 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/dash_trial.py</url>
+          <line>27</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/../eqdash/index.py">
@@ -256,22 +383,51 @@
     <entry file="file://$PROJECT_DIR$/../eqdash/apps/parse/hsr_df.py" />
     <entry file="file://$PROJECT_DIR$/index_2.py" />
     <entry file="file://$USER_HOME$/AppData/Local/Continuum/anaconda3/Lib/site-packages/plotly/basedatatypes.py">
+<<<<<<< HEAD
+=======
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="205">
           <caret line="3007" selection-start-line="3007" selection-end-line="3007" />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app_void.py" />
+    <entry file="file://$PROJECT_DIR$/app" />
+    <entry file="file://$PROJECT_DIR$/index.py" />
+    <entry file="file://$PROJECT_DIR$/dash_trial.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="30" selection-start-line="30" selection-end-line="30" />
+          <folding>
+            <element signature="e#0#38#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/assets/03_listbox.css">
+>>>>>>> ca5a70981539e877fdea3035a990f6f7a4a12eac
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="244">
+          <caret line="127" column="21" lean-forward="true" selection-start-line="127" selection-start-column="21" selection-end-line="127" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/env/Lib/site-packages/dash/development/base_component.py">
+      <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state relative-caret-position="244">
           <caret line="127" column="21" selection-start-line="127" selection-start-column="21" selection-end-line="127" selection-end-column="21" />
+=======
+        <state relative-caret-position="435">
+          <caret line="323" selection-start-line="323" selection-end-line="323" />
+>>>>>>> ca5a70981539e877fdea3035a990f6f7a4a12eac
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/02_my.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="346">
+<<<<<<< HEAD
           <caret line="123" selection-start-line="123" selection-end-line="123" />
         </state>
       </provider>
@@ -283,16 +439,33 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="37">
           <caret line="398" column="31" selection-start-line="398" selection-start-column="31" selection-end-line="398" selection-end-column="31" />
-          <folding>
-            <element signature="e#0#17#0" expanded="true" />
-          </folding>
+=======
+          <caret line="155" lean-forward="true" selection-start-line="155" selection-end-line="155" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app.py">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="114" column="36" lean-forward="true" selection-start-line="114" selection-start-column="36" selection-end-line="114" selection-end-column="36" />
+>>>>>>> ca5a70981539e877fdea3035a990f6f7a4a12eac
+          <folding>
+            <element signature="e#0#17#0" expanded="true" />
+            <element signature="e#701#818#0" />
+            <element signature="e#921#4297#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/parse.py">
+      <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="1462">
           <caret line="111" column="21" selection-start-line="111" selection-start-column="21" selection-end-line="111" selection-end-column="21" />
+=======
+        <state relative-caret-position="267">
+          <caret line="413" column="49" lean-forward="true" selection-start-line="413" selection-start-column="49" selection-end-line="413" selection-end-column="49" />
+>>>>>>> ca5a70981539e877fdea3035a990f6f7a4a12eac
           <folding>
             <element signature="e#0#17#0" expanded="true" />
           </folding>

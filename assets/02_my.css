@@ -8,6 +8,20 @@ min-width: 90px;
 width: 90px;
 }
 
+
+#bldg_area_group .input-group-prepend .input-group-text {
+border-top-left-radius: 0px;
+border-top-right-radius: 0px;
+border-bottom-right-radius: 2.5px;
+}
+
+#area_input.form-control {
+border-top-right-radius: 0px !important;
+
+}
+
+
+
 h4, h3, h2 {
 text-align: center;
 }
@@ -17,28 +31,22 @@ min-width: 125px;
 }
 
 #cost_bar .plot-container .svg-container,  .svg-container .main-svg {
-justify-self: center;
-align: center;
-text-align: center !important;
-margin-right: 10%;
-margin-left: 10%;
+justify-self: left;
+align: left;
+text-align: left !important;
+margin-right: 0%;
+margin-left: 0%;
 }
-
 
 
 #pie_summaries .plot-container .svg-container,  .svg-container .main-svg {
-justify-self: center;
-align: center;
-text-align: center !important;
-margin-right: 10%;
-margin-left: 10%;
+justify-self: left;
+align: left;
+text-align: left !important;
+margin-right: 0%;
+margin-left: 0%;
 }
 
-/*
-.form-control .input-group-text {
-font-size: 12px;
-}
-*/
 
 #bldg_type .form-control {
 border-bottom-color: rgba(0,0,0,0);
@@ -109,16 +117,51 @@ height: 100vh;
 }
 
 
-
-
-
+#bldg_area_group{
+padding-top: 10px;
+}
 
 
 
 #body {
 padding-left: 1%;
 padding-right: 1%;
+max-width: 180vh;
+min-width: 80vh;
+justify-self: center !important;
 }
 
 
+
+#cost_pie_col {
+z-index: 1;
+overflow: hidden;
+
+}
+
+#bullet_bar .main-svg {
+margin-right: 0;
+width: 200;
+overflow: visible;
+
+}
+
+#bullet_bar .svg_container {
+width: 200 !important;
+}
+
+#cost_toggle {
+font-size: .9em;
+}
+
+#cost_toggle{
+margin-top: 5px;
+}
+
+
+
+
+.navbar .row{
+width: 100% !important;
+}
 
