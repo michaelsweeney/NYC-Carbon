@@ -37,7 +37,7 @@ kbtu_dict = {  # convert to kbtu
 }
 
 input_std_dict_rates = {
-    'Elec': 0.18866,  # $ / kWh
+    'Elec': 0.22,  # $ / kWh
     'Gas': 0.997,  # $ / Therm
     'Steam': 35,  # $ / mLb
 }
