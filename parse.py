@@ -28,18 +28,18 @@ piecolors = ['rgb(56, 151, 170)', 'rgb(83, 224, 120)', 'rgb(242, 224, 109)']
 carbon_dict = {
     'Elec': 0.000288962,  # tCO2 / kWh
     'Gas': 0.005311,  # tCO2 / Therm
-    'Steam': 0.04493,  # tCO2/MMBtu (from 66.4 kg/MMBtu)
+    'Steam': 0.053646,  # tCO2/MMBtu (from 66.4 kg/MMBtu)
 }
 kbtu_dict = {  # convert to kbtu
     'Elec': 3.412,
     'Gas': 100,
-    'Steam': 1000,
+    'Steam': 1194,
 }
 
 input_std_dict_rates = {
     'Elec': 0.18866,  # $ / kWh
     'Gas': 0.997,  # $ / Therm
-    'Steam': 2.36,  # $ / MMBtu
+    'Steam': 35,  # $ / mLb
 }
 
 
@@ -280,7 +280,7 @@ def make_carbon_bullet(carbon, co2limit, fine):
         {
             'x': 3,
             'y': co2limit.reset_index()['Value'][0],
-            'text': "{0}<br>Fine: ${1}/yr".format(co2limit.reset_index()['SubTable'][0], "{:,}".format(round(list(fine['Value'])[0]))),
+            'text': "{0}<br>${1}/yr".format(co2limit.reset_index()['SubTable'][0], "{:,}".format(round(list(fine['Value'])[0]))),
             'showarrow': False,
             'align': 'left',
             'width': 100,
@@ -288,7 +288,7 @@ def make_carbon_bullet(carbon, co2limit, fine):
         {
             'x': 3,
             'y': co2limit.reset_index()['Value'][1],
-            'text': "{0}<br>Fine: ${1}/yr".format(co2limit.reset_index()['SubTable'][1], "{:,}".format(round(list(fine['Value'])[1]))),
+            'text': "{0}<br>${1}/yr".format(co2limit.reset_index()['SubTable'][1], "{:,}".format(round(list(fine['Value'])[1]))),
             'showarrow': False,
             'align': 'left',
             'width': 100,
@@ -296,7 +296,7 @@ def make_carbon_bullet(carbon, co2limit, fine):
         {
             'x': 3,
             'y': co2limit.reset_index()['Value'][2],
-            'text': "{0}<br>Fine: ${1}/yr".format(co2limit.reset_index()['SubTable'][2], "{:,}".format(round(list(fine['Value'])[2]))),
+            'text': "{0}<br>${1}/yr".format(co2limit.reset_index()['SubTable'][2], "{:,}".format(round(list(fine['Value'])[2]))),
             'showarrow': False,
             'align': 'left',
             'width': 100,
@@ -409,7 +409,6 @@ def make_cost_bar(fine, cost):
 
     data.append(fine_traces)
 
-    print (fine)
     layout = go.Layout(barmode='stack',
                        width=600,
                        height=400,
@@ -418,17 +417,26 @@ def make_cost_bar(fine, cost):
                        font={'family': 'Futura LT BT'},
                        legend={'orientation': 'h',
                                'x': 0.2,
-                               'y': -0.1},
+                               'y': -0.2},
                        margin={'l': 45,
                                'r': 40,
                                't': 80,
                                'b': piemargins,
                                },
                        xaxis={'fixedrange': True,
-                              'showgrid': False},
+                              'showgrid': False,
+                              'showline': False
+                              },
+
                        yaxis={'fixedrange': True,
                               'showgrid': False,
-                              'title': 'Cost per Year ($)'},
+                              'title': 'Cost per Year ($)',
+                              'zerolinecolor': 'rgb(153,153,153)',
+
+                              },
+
+
+
                        paper_bgcolor='rgba(0,0,0,0)',
                        plot_bgcolor='rgba(0,0,0,0)',
                        )

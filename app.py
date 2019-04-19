@@ -76,7 +76,7 @@ app.layout = dbc.Container([
                                                        {'label': 'U', 'value': 'U'},
 
                                                    ],
-                                                   value='B (normal)',
+                                                   value='R-2',
                                                    placeholder='Building Type',
                                                    clearable=False),
                                       dbc.InputGroup(
@@ -127,51 +127,50 @@ app.layout = dbc.Container([
 
     dbc.Row(id='bodyrow', children=[
 
-            dbc.Col(id='bullet_col', width=5, children=[
-                dcc.Graph(id='bullet_bar', config=config)
+        dbc.Col(id='bullet_col', width=5, children=[
+            dcc.Graph(id='bullet_bar', config=config)
+        ]),
+        dbc.Col(id='pie_col', children=[
+
+            dbc.Row(id='figrow1', children=[
+
+                dbc.Col([dcc.Graph(id='cost_pie', config=config), ], width=4, className='col_nopad', id='cost_pie_col'),
+                dbc.Col([dcc.Graph(id='carbon_pie', config=config), ], width=4, className='col_nopad',
+                        id='carbon_pie_col'),
+                dbc.Col([dcc.Graph(id='eui_pie', config=config), ], width=4, className='col_nopad', id='eui_pie_col'),
             ]),
-            dbc.Col(id='pie_col', children=[
 
-                dbc.Row(id='figrow1', children=[
+            dbc.Row(id='figrow_toggle', children=[
 
-                    dbc.Col([dcc.Graph(id='cost_pie', config=config), ], width=4, className='col_nopad', id='cost_pie_col'),
-                    dbc.Col([dcc.Graph(id='carbon_pie', config=config), ], width=4, className='col_nopad', id='carbon_pie_col'),
-                    dbc.Col([dcc.Graph(id='eui_pie', config=config), ], width=4, className='col_nopad', id='eui_pie_col'),
-                ]),
-
-                dbc.Row(id='figrow_toggle', children=[
-
-                    dbc.Col([dbc.Checklist(options=[
+                dbc.Col([dbc.Checklist(options=[
+                    {"label": "By Area", "value": 1},
+                ],
+                    values=[], id='cost_toggle'), ], width=4, className='col_nopad', id='cost_toggle_col'),
+                dbc.Col([dcc.Checklist(options=[
+                    {"label": "By Area1", "value": 1},
+                ],
+                    values=[], id='carbon_toggle'), ], width=4, className='col_nopad', id='carbon_toggle_col'),
+                dbc.Col([
+                    dcc.Checklist(options=[
                         {"label": "By Area", "value": 1},
                     ],
-                        values=[], id='cost_toggle'), ], width=4, className='col_nopad', id='cost_toggle_col'),
-                    dbc.Col([dcc.Checklist(options=[
-                        {"label": "By Area1", "value": 1},
-                    ],
-                        values=[], id='carbon_toggle'), ], width=4, className='col_nopad', id='carbon_toggle_col'),
-                    dbc.Col([
-                        dcc.Checklist(options=[
-                            {"label": "By Area", "value": 1},
-                        ],
-                            values=[], id='eui_toggle'), ], width=4, className='col_nopad', id='eui_toggle_col'),
-                ]),
+                        values=[], id='eui_toggle'), ], width=4, className='col_nopad', id='eui_toggle_col'),
+            ]),
 
-                dbc.Row(id='figrow2', children=[
+            dbc.Row(id='figrow2', children=[
 
-                    dbc.Col(id='cost_col', children=[dcc.Graph(id='cost_bar', config=config)
+                dbc.Col(id='cost_col', children=[dcc.Graph(id='cost_bar', config=config)
 
-                                                     ], width=12),
-                ])
-            ], width=5),
+                                                 ], width=12),
+            ])
+        ], width=5),
 
-    ]),
+    ], style={'visibility': 'hidden'}, ),
     dbc.Row(id='bottom_row', children=[
 
-        html.P('•	The above calculator is based on AKFs understanding and interpretation of the aged version of NYC Intro 1253'),
-
-    html.P("•	The bill mandates an advisory board be established, who’s purpose will be to provide advice and recommendations to the commissioner and to the mayor’s office of long term planning and sustainability.  These recommendations may ultimately change the carbon limits and associated fines depicted above."),
-  
-html.P("•	The law as written also outlines a number of possible adjustments to the annual building emissions limit.  These adjustment may be granted if capital improvements required for compliance are not reasonably possible, do not allow for a reasonable financial return, are a result of special circumstances related to the use of the building, or apply specifically for not-for-profit hospitals and healthcare facilities.  However the department is responsible for determining if the adjustments apply for each covered building."),
+        html.P("•	The above calculator is based on AKFs understanding and interpretation of the aged version of NYC Intro 1253"),
+        html.P("•	The bill mandates an advisory board be established, who’s purpose will be to provide advice and recommendations to the commissioner and to the mayor’s office of long term planning and sustainability.  These recommendations may ultimately change the carbon limits and associated fines depicted above."),
+        html.P("•	The law as written also outlines a number of possible adjustments to the annual building emissions limit.  These adjustment may be granted if capital improvements required for compliance are not reasonably possible, do not allow for a reasonable financial return, are a result of special circumstances related to the use of the building, or apply specifically for not-for-profit hospitals and healthcare facilities.  However the department is responsible for determining if the adjustments apply for each covered building."),
 
     ]),
 
@@ -190,6 +189,7 @@ def toggle_collapse(nclicks):
 
 @app.callback(
     [
+        Output('bodyrow', "style"),
         Output("cost_pie", "figure"),
         Output("carbon_pie", "figure"),
         Output("eui_pie", "figure"),
@@ -228,8 +228,10 @@ def make_frame(n_clicks,
     input_cons_dict = {
         'Elec': ann_kwh_input,
         'Gas': ann_gas_input,
-        'Steam': ann_steam_input,
+        'Steam': ann_steam_input
     }
+
+
 
     if rate_toggle == ["Y"]:
         bldg = parse.Bldg(area_input,
@@ -259,7 +261,9 @@ def make_frame(n_clicks,
 
     carbon_bullet = parse.make_carbon_bullet(carbon, co2limit, fine)
     cost_bar = parse.make_cost_bar(fine, cost)
-    return cost_pie, carbon_pie, eui_pie, carbon_bullet, cost_bar
+
+    body_display = {'visibility': 'visible'}
+    return body_display, cost_pie, carbon_pie, eui_pie, carbon_bullet, cost_bar
 
 
 if __name__ == "__main__":
