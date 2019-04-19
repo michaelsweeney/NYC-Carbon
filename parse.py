@@ -18,11 +18,12 @@ limit_dict.index = limits['DOB Occupancy groups']
 limit_dict = limits[['2024-2029', '2030-2034', '2035-2050 (est)']].astype(float)
 limit_dict = limit_dict.T.to_dict()
 
-piedims = 350
+piedims = 200
+piemargins = 40 # default 80
 piecolors = ['rgb(56, 151, 170)', 'rgb(83, 224, 120)', 'rgb(242, 224, 109)']
 
 
-autosize=False
+
 # static dictionaries/lookups
 carbon_dict = {
     'Elec': 0.000288962,  # tCO2 / kWh
@@ -138,86 +139,96 @@ class Bldg:
         return summary
 
 
-def make_pie_subplots(cost, carbon, eui):
+
+
+
+def make_cost_pie(cost):
     cost_trace = go.Pie(values=cost['Value'].round(0),
                         labels=cost['SubTable'],
                         hole=0.5,
-                        domain={'x': [0.0, 0.3],
-                                'y': [0, 1]},
-                        text=carbon['SubTable'],
+                        text=cost['SubTable'],
                         marker={'colors': piecolors},
                         showlegend=False,
                         hoverinfo='label+value+percent',
-
                         )
+    cost_layout = go.Layout(dict(
+                       font={'family': 'Futura LT BT'},
+                       title='Cost ($)',
+                       paper_bgcolor='rgba(0,0,0,0)',
+                       plot_bgcolor='rgba(0,0,0,0)',
+                       width=piedims,
+                       height=piedims,
+                       xaxis={'showgrid': False},
+                       yaxis={'showgrid': False},
+        margin={'l': piemargins,
+                'r': piemargins,
+                't': piemargins,
+                'b': piemargins,
+                }
+    ))
+    cost_fig = go.Figure([cost_trace], cost_layout)
+    return cost_fig
+
+
+
+def make_carbon_pie(carbon):
     carbon_trace = go.Pie(values=carbon['Value'].round(0),
                           labels=carbon['SubTable'],
                           text=carbon['SubTable'],
                           hole=0.5,
-                          domain={'x': [0.33, 0.63],
-                                  'y': [0, 1]},
                           marker={'colors': piecolors},
                           showlegend=False,
                           hoverinfo='label+value+percent'
                           )
+    carbon_layout = go.Layout(dict(
+        font={'family': 'Futura LT BT'},
+        title='Carbon (tCO2)',
+        paper_bgcolor='rgba(0,0,0,0)',
+        plot_bgcolor='rgba(0,0,0,0)',
+        width=piedims,
+        height=piedims,
+        xaxis={'showgrid': False},
+        yaxis={'showgrid': False},
+        margin={'l': piemargins,
+                'r': piemargins,
+                't': piemargins,
+                'b': piemargins,
+                }
+    ))
+    carbon_fig = go.Figure([carbon_trace], carbon_layout)
+    return carbon_fig
 
+
+def make_eui_pie(eui):
     eui_trace = go.Pie(values=eui['Value'].round(0),
-                       labels=cost['SubTable'],
-                       text=carbon['SubTable'],
+                       labels=eui['SubTable'],
+                       text=eui['SubTable'],
                        hole=0.5,
-                       domain={'x': [0.66, 0.97],
-                               'y': [0, 1]},
-
                        marker={'colors': piecolors},
                        showlegend=False,
                        hoverinfo='label+value+percent'
                        )
 
-    layout = go.Layout(
-                       font={'family': 'Futura LT BT'},
-                       paper_bgcolor='rgba(0,0,0,0)',
-                       plot_bgcolor='rgba(0,0,0,0)',
-                       autosize=autosize,
-                       width=700,
-                       height=300,
+    eui_layout = go.Layout(dict(
+        font={'family': 'Futura LT BT'},
+        title='EUI (kBtu/sf/Yr)',
+        paper_bgcolor='rgba(0,0,0,0)',
+        plot_bgcolor='rgba(0,0,0,0)',
+        width=piedims,
+        height=piedims,
+        xaxis={'showgrid': False},
+        yaxis={'showgrid': False},
+        margin={'l': piemargins,
+                'r': piemargins,
+                't': piemargins,
+                'b': piemargins,
+                }
+    ))
+    eui_fig = go.Figure([eui_trace], eui_layout)
+    return eui_fig
 
-                       xaxis={'showgrid': False},
-                       yaxis={'showgrid': False},
-                       annotations=[
-                           {
-                               'x': 0.1,
-                               'y': 1.555,
-                               'xref': 'paper',
-                               'yref': 'paper',
-                               'text': 'Cost ($)',
-                               'showarrow': False,
-                               'font': {'size': 17, 'color': 'rgb(60, 60, 60)'},
-                               'align': 'left',
-                           },
-                           {
-                               'x': 0.47,
-                               'y': 1.555,
-                               'xref': 'paper',
-                               'yref': 'paper',
-                               'text': 'Carbon (tCO2)',
-                               'showarrow': False,
-                               'font': {'size': 17, 'color': 'rgb(60, 60, 60)'},
-                               'align': 'left',
-                           },
-                           {
-                               'x': 0.94,
-                               'y': 1.555,
-                               'xref': 'paper',
-                               'yref': 'paper',
-                               'text': 'EUI (kbtu/sf/yr)',
-                               'showarrow': False,
-                               'font': {'size': 17, 'color': 'rgb(60, 60, 60)'},
-                               'align': 'left',
-                           },
-                       ]
-                       )
-    fig = go.Figure([cost_trace, carbon_trace, eui_trace], layout)
-    return fig
+
+
 
 
 
@@ -228,7 +239,7 @@ def make_carbon_bullet(carbon, co2limit, fine):
                name='Carbon (tCO2)',
                width=0.75,
                opacity=1.0,
-               marker={'color': 'rgb(50, 160, 180)'},
+               marker={'color': 'rgb(100, 100, 100)'},
                showlegend=False,
                hoverinfo='name+y'
                )]
@@ -237,15 +248,20 @@ def make_carbon_bullet(carbon, co2limit, fine):
     layout = go.Layout(barmode='overlay',
                        font={'family': 'Futura LT BT'},
                        legend={'x': 1.07},
-                       autosize=autosize,
-                       width=400, #todo margin here?
-                       height=725,
+                       width=300, #todo margin here?
+                       height=600,
+                       margin={'l': 45,
+                               'r': 40,
+                               't': 80,
+                               'b': piemargins,
+                               },
                        xaxis={'showticklabels': False,
                               'showgrid': False,
                               'fixedrange': True},
 
-                       title=go.layout.Title(text='Building CO2 Intensity<br>vs. NYC Fine Thresholds',
+                       title=go.layout.Title(text='Building CO2 Intensity vs.<br>NYC Fine Thresholds over Time',
                                              x=0.38,
+                                             y=0.95,
                                              xref='container',
                                              xanchor='center'),
 
@@ -264,7 +280,7 @@ def make_carbon_bullet(carbon, co2limit, fine):
         {
             'x': 3,
             'y': co2limit.reset_index()['Value'][0],
-            'text': "{0}<br>Fine: ${1}".format(co2limit.reset_index()['SubTable'][0], "{:,}".format(round(list(fine['Value'])[0]))),
+            'text': "{0}<br>Fine: ${1}/yr".format(co2limit.reset_index()['SubTable'][0], "{:,}".format(round(list(fine['Value'])[0]))),
             'showarrow': False,
             'align': 'left',
             'width': 100,
@@ -272,7 +288,7 @@ def make_carbon_bullet(carbon, co2limit, fine):
         {
             'x': 3,
             'y': co2limit.reset_index()['Value'][1],
-            'text': "{0}<br>Fine: ${1}".format(co2limit.reset_index()['SubTable'][1], "{:,}".format(round(list(fine['Value'])[1]))),
+            'text': "{0}<br>Fine: ${1}/yr".format(co2limit.reset_index()['SubTable'][1], "{:,}".format(round(list(fine['Value'])[1]))),
             'showarrow': False,
             'align': 'left',
             'width': 100,
@@ -280,7 +296,7 @@ def make_carbon_bullet(carbon, co2limit, fine):
         {
             'x': 3,
             'y': co2limit.reset_index()['Value'][2],
-            'text': "{0}<br>Fine: ${1}".format(co2limit.reset_index()['SubTable'][2], "{:,}".format(round(list(fine['Value'])[2]))),
+            'text': "{0}<br>Fine: ${1}/yr".format(co2limit.reset_index()['SubTable'][2], "{:,}".format(round(list(fine['Value'])[2]))),
             'showarrow': False,
             'align': 'left',
             'width': 100,
@@ -341,19 +357,7 @@ def make_carbon_bullet(carbon, co2limit, fine):
             },
             'fillcolor': 'rgba(255, 25, 0, 1)', },
 
-        # {
-        #     'type': 'rect',
-        #     'x0': 0,
-        #     'y0': 0,
-        #     'x1': 2,
-        #     'y1': co2limit.reset_index()['Value'][3],
-        #     'opacity': 0.2,
-        #     'layer': 'below',
-        #     'line': {
-        #         'color': 'rgba(128, 128, 128, 1)',
-        #         'width': 1,
-        #     },
-        #     'fillcolor': 'rgba(255, 0, 0, 1)', }
+
         ]
     })
 
@@ -394,6 +398,9 @@ def make_cost_bar(fine, cost):
     except:
         pass
 
+
+
+
     fine_traces = go.Bar(x=fine.SubTable,
                          y=round(fine.Value),
                          name='Carbon Fine ($)',
@@ -402,21 +409,61 @@ def make_cost_bar(fine, cost):
 
     data.append(fine_traces)
 
+    print (fine)
     layout = go.Layout(barmode='stack',
-                       autosize=autosize,
-                       width=700,
+                       width=600,
                        height=400,
-                       title='Annual Building Energy Cost Over Time',
+                       title=go.layout.Title(text='Annual Building Utility Cost + Carbon Fines per Year',
+                                       y=0.9),
                        font={'family': 'Futura LT BT'},
                        legend={'orientation': 'h',
                                'x': 0.2,
                                'y': -0.1},
+                       margin={'l': 45,
+                               'r': 40,
+                               't': 80,
+                               'b': piemargins,
+                               },
                        xaxis={'fixedrange': True,
                               'showgrid': False},
                        yaxis={'fixedrange': True,
-                              'showgrid': False},
+                              'showgrid': False,
+                              'title': 'Cost per Year ($)'},
                        paper_bgcolor='rgba(0,0,0,0)',
                        plot_bgcolor='rgba(0,0,0,0)',
                        )
+
+
+
+    y_modifier = .05* (cost['Value'].sum() + fine['Value'].max())
+    layout.update({'annotations': [
+        {
+            'x': 0,
+            'y': list(fine['Value'])[0] + cost['Value'].sum() + y_modifier,
+            'text': "${0}/yr".format("{:,}".format(round(list(fine['Value'])[0]))),
+            'showarrow': False,
+            'align': 'center',
+            'width': 100,
+        },
+        {
+            'x': 1,
+            'y': list(fine['Value'])[1] + cost['Value'].sum() + y_modifier,
+            'text': "${0}/yr".format("{:,}".format(round(list(fine['Value'])[1]))),
+            'showarrow': False,
+            'align': 'center',
+            'width': 100,
+        },
+        {
+            'x': 2,
+            'y': list(fine['Value'])[2] + cost['Value'].sum() + y_modifier,
+            'text': "${0}/yr".format("{:,}".format(round(list(fine['Value'])[2]))),
+            'showarrow': False,
+            'align': 'center',
+            'width': 100,
+        }
+        ]
+    }
+    )
+
     fig = go.Figure(data, layout)
     return fig
