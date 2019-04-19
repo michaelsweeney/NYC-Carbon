@@ -1,3 +1,22 @@
+'''todo
+fix first column of inputs-  padding or whatever - make them flush
+
+'default rates' button
+'submit/ refresh button and change callbacks to 'state''
+line up donuts
+/FT2 normalizations and associated hover info and title?
+should hover not be % and only be value?
+bottom bar graph y axis - title choking ticks
+do donuts have enough space for callouts to swirl around?
+figure out print (maybe button?) and why it doesn't print NAV automatically)
+donuts are crowding titles or vice versa
+
+'''
+
+
+
+
+
 import glob as gb
 import pandas as pd
 import dash_core_components as dcc
@@ -45,35 +64,44 @@ app.layout = dbc.Container([
         dbc.Col([
             dbc.Button(html.Img(id='burg_svg', src='assets/burger.svg'), id='submit_btn'),
         ], width=1),
-        dbc.Col(id='building_name', children=[html.H4('0000 Broadway')], width=10),
+        dbc.Col(id='building_name', children=[
+            #html.H4('0000 Broadway'),
+            dbc.Input(id='building_name_input', placeholder='Enter Building Name (optional)')
+
+        ], width=10),
+
         dbc.Col(id='spacer', width=1), ]),
     dbc.Row(id='collapse_row', children=[
         dbc.Col([
             dbc.Collapse(id='collapse', is_open=True, children=[
-                # dbc.Row(dbc.Col(html.H6('Input Project Information Below (todo: background colored differently)'))),
+                #dbc.Row(dbc.Col(html.H6('Input Project Information Below (todo: background colored differently)'))),
+
+
+
                 dbc.Row([
-                    dbc.Col(children=[html.Div("General Info"),
+                    dbc.Col(children=[html.Div("General Info", className = 'form_header'),
                                       html.Div(className='input-group-text bldg_type_header',
-                                               children=['Building Type']),
+                                               children=[html.Div('Building Type'), html.A(html.Div("?", id='bldg_type_question'), href='https://up.codes/viewer/new_york_city/nyc-building-code-2014/chapter/3/use-and-occupancy-classification#3', )]
+                                               ),
                                       dcc.Dropdown(className='form-control',
                                                    id='bldg_type',
                                                    options=[
 
-                                                       {'label': 'A', 'value': 'A'},
-                                                       {'label': 'B, (healthcare)', 'value': 'B (healthcare)'},
-                                                       {'label': 'B, (normal)', 'value': 'B (normal)'},
-                                                       {'label': 'E', 'value': 'E'},
-                                                       {'label': 'F', 'value': 'F'},
-                                                       {'label': 'H', 'value': 'H'},
-                                                       {'label': 'I-1', 'value': 'I-1'},
-                                                       {'label': 'I-2', 'value': 'I-2'},
-                                                       {'label': 'I-3', 'value': 'I-3'},
-                                                       {'label': 'I-4', 'value': 'I-4'},
-                                                       {'label': 'M', 'value': 'M'},
-                                                       {'label': 'R-1', 'value': 'R-1'},
-                                                       {'label': 'R-2', 'value': 'R-2'},
-                                                       {'label': 'S', 'value': 'S'},
-                                                       {'label': 'U', 'value': 'U'},
+                                                       {'label': 'A (Assembly)', 'value': 'A'},
+                                                       {'label': 'B (Business)', 'value': 'B (normal)'},
+                                                       {'label': 'B (Healthcare)', 'value': 'B (healthcare)'},
+                                                       {'label': 'E (Educational)', 'value': 'E'},
+                                                       {'label': 'F (Factory/Industrial)', 'value': 'F'},
+                                                       {'label': '(High Hazard)', 'value': 'H'},
+                                                       {'label': 'I-1 (Institutional)', 'value': 'I-1'},
+                                                       {'label': 'I-2 (Institutional)', 'value': 'I-2'},
+                                                       {'label': 'I-3 (Institutional)', 'value': 'I-3'},
+                                                       {'label': 'I-4 (Institutional)', 'value': 'I-4'},
+                                                       {'label': 'M (Mercantile)', 'value': 'M'},
+                                                       {'label': 'R-1 (Residential)', 'value': 'R-1'},
+                                                       {'label': 'R-2 (Residential)', 'value': 'R-2'},
+                                                       {'label': 'S (Storage)', 'value': 'S'},
+                                                       {'label': 'U (Utility/Miscellaneous)', 'value': 'U'},
 
                                                    ],
                                                    value='R-2',
@@ -84,7 +112,7 @@ app.layout = dbc.Container([
                                            dbc.Input(id='area_input', value='135000')], id='bldg_area_group'), ],
                             width=4),
 
-                    dbc.Col(children=[html.Div(children=["Annual Consumption"]),
+                    dbc.Col(children=[html.Div(children=["Annual Consumption"], className = 'form_header'),
                                       dbc.InputGroup(
                                           [dbc.InputGroupAddon("Elec (kWh)", addon_type="prepend"),
                                            dbc.Input(id='ann_kwh_input', value='1897217')]),
@@ -99,7 +127,7 @@ app.layout = dbc.Container([
                     dbc.Col(children=[
                         dbc.Row([
                             dbc.Col([
-                                html.Div("Annual Rates")]),
+                                html.Div("Annual Rates", className = 'form_header')]),
                             dbc.Col([
                                 dbc.Checklist(id='rate_toggle', options=[
                                     {'label': 'Use Default Rates', 'value': 'Y'}], values=['Y']), ]),
@@ -168,7 +196,8 @@ app.layout = dbc.Container([
     ], style={'visibility': 'hidden'}, ),
     dbc.Row(id='bottom_row', children=[
 
-        html.P("•	The above calculator is based on AKFs understanding and interpretation of the aged version of NYC Intro 1253"),
+        html.P("•	The above calculator is based on AKFs understanding and interpretation of the aged version of NYC Intro 1253c (This calculator provides an approximation of the impact of the new law and should not be relied on as actual results may vary) "),
+        html.P("•	Emission limits for 2035 – 2050 are not yet itemized for each individual occupancy group.  The fine identified here is based on the average value for all covered buildings that is identified in the law, and is subject to change."),
         html.P("•	The bill mandates an advisory board be established, who’s purpose will be to provide advice and recommendations to the commissioner and to the mayor’s office of long term planning and sustainability.  These recommendations may ultimately change the carbon limits and associated fines depicted above."),
         html.P("•	The law as written also outlines a number of possible adjustments to the annual building emissions limit.  These adjustment may be granted if capital improvements required for compliance are not reasonably possible, do not allow for a reasonable financial return, are a result of special circumstances related to the use of the building, or apply specifically for not-for-profit hospitals and healthcare facilities.  However the department is responsible for determining if the adjustments apply for each covered building."),
 

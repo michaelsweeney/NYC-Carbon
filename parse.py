@@ -19,7 +19,13 @@ limit_dict = limits[['2024-2029', '2030-2034', '2035-2050 (est)']].astype(float)
 limit_dict = limit_dict.T.to_dict()
 
 piedims = 200
-piemargins = 40 # default 80
+piemargins = {'t': 40,
+              'b': 40,
+              'l': 40,
+              'r': 40
+              }
+
+# default 80
 piecolors = ['rgb(56, 151, 170)', 'rgb(83, 224, 120)', 'rgb(242, 224, 109)']
 
 
@@ -160,11 +166,7 @@ def make_cost_pie(cost):
                        height=piedims,
                        xaxis={'showgrid': False},
                        yaxis={'showgrid': False},
-        margin={'l': piemargins,
-                'r': piemargins,
-                't': piemargins,
-                'b': piemargins,
-                }
+        margin=piemargins
     ))
     cost_fig = go.Figure([cost_trace], cost_layout)
     return cost_fig
@@ -189,11 +191,7 @@ def make_carbon_pie(carbon):
         height=piedims,
         xaxis={'showgrid': False},
         yaxis={'showgrid': False},
-        margin={'l': piemargins,
-                'r': piemargins,
-                't': piemargins,
-                'b': piemargins,
-                }
+        margin=piemargins
     ))
     carbon_fig = go.Figure([carbon_trace], carbon_layout)
     return carbon_fig
@@ -218,11 +216,7 @@ def make_eui_pie(eui):
         height=piedims,
         xaxis={'showgrid': False},
         yaxis={'showgrid': False},
-        margin={'l': piemargins,
-                'r': piemargins,
-                't': piemargins,
-                'b': piemargins,
-                }
+        margin=piemargins
     ))
     eui_fig = go.Figure([eui_trace], eui_layout)
     return eui_fig
@@ -248,12 +242,12 @@ def make_carbon_bullet(carbon, co2limit, fine):
     layout = go.Layout(barmode='overlay',
                        font={'family': 'Futura LT BT'},
                        legend={'x': 1.07},
-                       width=300, #todo margin here?
+                       width=300,
                        height=600,
                        margin={'l': 45,
                                'r': 40,
                                't': 80,
-                               'b': piemargins,
+                               'b': 40,
                                },
                        xaxis={'showticklabels': False,
                               'showgrid': False,
@@ -421,7 +415,7 @@ def make_cost_bar(fine, cost):
                        margin={'l': 45,
                                'r': 40,
                                't': 80,
-                               'b': piemargins,
+                               'b': 40,
                                },
                        xaxis={'fixedrange': True,
                               'showgrid': False,

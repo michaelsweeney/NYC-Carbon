@@ -219,17 +219,6 @@ width: 120px;
 }
 
 
-#bldg_area_group .input-group-prepend .input-group-text {
-border-top-left-radius: 0px;
-border-top-right-radius: 0px;
-border-bottom-right-radius: 0px;
-}
-
-
-#bldg_area_group .form-control {
-margin-top: 0;
-padding-top: 0;
-}
 
 
 
@@ -243,13 +232,13 @@ border-top-right-radius: 0px !important;
 
 
 .bldg_type_header {
-border-bottom-left-radius: 0px !important;
-border-bottom-right-radius: 0px !important;
+border-bottom-left-radius: 2.5px !important;
+border-bottom-right-radius: 2.5px !important;
 border-top-left-radius: 2.5px !important;
 border-top-right-radius: 2.5px !important;
 min-width: 90px;
 width: 100%;
-height: 24.5px;
+height: 27.5px;
 margin-right: -1px;
 text-align: center;
 align-items: center;
@@ -289,21 +278,55 @@ height: 22.5px !important;
 line-height: 22.5px !important;
 }
 
+
+
+
+
+#bldg_area_group{
+padding-top: 0px;
+margin-top: 0px;
+border-bottom-left-radius: 2.5px !important;
+border-bottom-right-radius: 2.5px !important;
+border-top-left-radius: 2.5px !important;
+border-top-right-radius: 2.5px !important;
+}
+
+
+#bldg_area_group .input-group-prepend .input-group-text {
+border-top-left-radius: 2.5px;
+border-top-right-radius: 0px;
+border-bottom-right-radius: 0px;
+}
+
+bldg_area_group .input-group-prepend {
+border-bottom-left-radius: 2.5px !important;
+border-bottom-right-radius: 2.5px !important;
+border-top-left-radius: 2.5px !important;
+border-top-right-radius: 2.5px !important;
+}
+
+#bldg_area_group .form-control {
+margin-top: 0;
+padding-top: 0;
+border-top-right-radius: 2.5px !important;
+}
+
+
 #bldg_type .Select-value-label {
 vertical-align: center !important;
 
 }
 
 
-#bldg_area_group{
-padding-top: 0px;
-margin-top: 0px;
+
+
+#bldg_type .Select-control {
+border-top-right-radius: 2.5px !important;
+border-top-left-radius: 2.5px !important;
+border-bottom-right-radius: 2.5px !important;
+border-bottom-left-radius: 2.5px !important;
+
 }
-
-
-
-
-
 
 
 
@@ -325,8 +348,14 @@ display: inline-block;
 
 
 
+#bldg_type_question {
+margin-left: 1px;
+text-align: right;
+text-decoration: none !important;
+font-size: 8px !important;
+margin-bottom: 5px;
 
-
+}
 
 
 
@@ -379,3 +408,26 @@ right: 30px;
 
 
 
+#building_name_input {
+border-top: none;
+border-bottom: none;
+border-left: none;
+border-right: none;
+text-align: center;
+font: Futura LT BT;
+font-size: 25px !important;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+
+::-webkit-input-placeholder {
+font-size: 10px !important;
+vertical-align: middle;
+}
+
+
+
+
+.form_header {
+padding-left: 8px;
+}
