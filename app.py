@@ -1,21 +1,19 @@
 '''todo
 fix first column of inputs-  padding or whatever - make them flush
 
-'default rates' button
-'submit/ refresh button and change callbacks to 'state''
+
 line up donuts
-/FT2 normalizations and associated hover info and title?
-should hover not be % and only be value?
 bottom bar graph y axis - title choking ticks
 do donuts have enough space for callouts to swirl around?
 figure out print (maybe button?) and why it doesn't print NAV automatically)
 donuts are crowding titles or vice versa
 
+#can i line up first line of pie / bars with 'annual consumption', and last line of pie / bars with middle of 'annual rates'?
+line up  'NYC Carbon Fine Calculator' with building title (or vice versa)
+
+'<1000' exception
+clickable links: new tabs
 '''
-
-
-
-
 
 import glob as gb
 import pandas as pd
@@ -27,15 +25,20 @@ from dash.dependencies import Input, Output, State
 import dash_bootstrap_components as dbc
 import parse
 import webbrowser
+import dash_daq as daq
+from parse import input_std_dict_rates
 
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+
+
 server = app.server
 app.config.suppress_callback_exceptions = True
+app.css.config.serve_locally = True
+app.scripts.config.serve_locally = True
 
-# todo handle 'inactive', fix and check conversions, stabilize viewports/divs. longer-term: consider sliding left sidenav
+
 config = {'showLink': False,
           'displayModeBar': False}
-
 app.title = "NYC 80x50 Energy + Performance estimator"
 
 app.layout = dbc.Container([
@@ -43,8 +46,8 @@ app.layout = dbc.Container([
         dbc.Row([
             dbc.Col(id='nav_side_left', children=[
                 html.A(
-
-                    html.Img(id='logo', src='assets/logo.png'), href='http://akfgroup.com/')
+                    html.Img(id='logo', src='assets/logo.png'), href='http://akfgroup.com/', target="_blank"
+                ),
 
             ], width=2),
             dbc.Col(id='nav_center', children=[
@@ -56,32 +59,39 @@ app.layout = dbc.Container([
                 html.A(id='energy_performance_link', children=[html.Div('ENERGY'),
                                                                html.Div('+'),
                                                                html.Div('PERFORMANCE')],
-                       href='https://www.akf-energyshift.com/'),
+                       href='https://www.akf-energyshift.com/',
+                       target="_blank"),
             ], width=2),
         ])
     ]),
     dbc.Row(id='titlerow', children=[
         dbc.Col([
-            dbc.Button(html.Img(id='burg_svg', src='assets/burger.svg'), id='submit_btn'),
-        ], width=1),
+            dbc.Button('Print', className = 'print')
+
+        ], width=1, id='print_col'),
         dbc.Col(id='building_name', children=[
-            #html.H4('0000 Broadway'),
+            # html.H4('0000 Broadway'),
             dbc.Input(id='building_name_input', placeholder='Enter Building Name (optional)')
 
         ], width=10),
 
-        dbc.Col(id='spacer', width=1), ]),
+        dbc.Col(id='spacer', width=1, children=[
+
+            # html.A("Print", href='Print'),
+
+        ]), ]),
     dbc.Row(id='collapse_row', children=[
         dbc.Col([
             dbc.Collapse(id='collapse', is_open=True, children=[
-                #dbc.Row(dbc.Col(html.H6('Input Project Information Below (todo: background colored differently)'))),
-
-
+                # dbc.Row(dbc.Col(html.H6('Input Project Information Below (todo: background colored differently)'))),
 
                 dbc.Row([
-                    dbc.Col(children=[html.Div("General Info", className = 'form_header'),
+                    dbc.Col(children=[html.Div("General Info", className='form_header'),
                                       html.Div(className='input-group-text bldg_type_header',
-                                               children=[html.Div('Building Type'), html.A(html.Div("?", id='bldg_type_question'), href='https://up.codes/viewer/new_york_city/nyc-building-code-2014/chapter/3/use-and-occupancy-classification#3', )]
+                                               children=[html.Div('Building Type'),
+                                                         html.A(html.Div("?", id='bldg_type_question'),
+                                                                href='https://up.codes/viewer/new_york_city/nyc-building-code-2014/chapter/3/use-and-occupancy-classification#3',
+                                                                target="_blank")]
                                                ),
                                       dcc.Dropdown(className='form-control',
                                                    id='bldg_type',
@@ -89,10 +99,11 @@ app.layout = dbc.Container([
 
                                                        {'label': 'A (Assembly)', 'value': 'A'},
                                                        {'label': 'B (Business)', 'value': 'B (normal)'},
-                                                       {'label': 'B (Healthcare)', 'value': 'B (healthcare)'},
+                                                       {'label': 'B (Other)', 'value': 'B (healthcare)'},
+                                                       # todo footnote
                                                        {'label': 'E (Educational)', 'value': 'E'},
                                                        {'label': 'F (Factory/Industrial)', 'value': 'F'},
-                                                       {'label': '(High Hazard)', 'value': 'H'},
+                                                       {'label': '(H High Hazard)', 'value': 'H'},
                                                        {'label': 'I-1 (Institutional)', 'value': 'I-1'},
                                                        {'label': 'I-2 (Institutional)', 'value': 'I-2'},
                                                        {'label': 'I-3 (Institutional)', 'value': 'I-3'},
@@ -112,7 +123,7 @@ app.layout = dbc.Container([
                                            dbc.Input(id='area_input', value='135000')], id='bldg_area_group'), ],
                             width=4),
 
-                    dbc.Col(children=[html.Div(children=["Annual Consumption"], className = 'form_header'),
+                    dbc.Col(children=[html.Div(children=["Annual Consumption"], className='form_header'),
                                       dbc.InputGroup(
                                           [dbc.InputGroupAddon("Elec (kWh)", addon_type="prepend"),
                                            dbc.Input(id='ann_kwh_input', value='1897217')]),
@@ -127,28 +138,43 @@ app.layout = dbc.Container([
                     dbc.Col(children=[
                         dbc.Row([
                             dbc.Col([
-                                html.Div("Annual Rates", className = 'form_header')]),
-                            dbc.Col([
-                                dbc.Checklist(id='rate_toggle', options=[
-                                    {'label': 'Use Default Rates', 'value': 'Y'}], values=['Y']), ]),
+                                html.Div("Blended Utility Rates", className='form_header')]),
+
                         ]),
 
                         dbc.InputGroup(
                             [dbc.InputGroupAddon("Elec ($/kWh)",
                                                  addon_type="prepend"),
-                             dbc.Input(id='ann_kwh_cost_input')]),
+
+                             dbc.Input(id='ann_kwh_cost_input', value=input_std_dict_rates['Elec'])]),
                         dbc.InputGroup(
                             [dbc.InputGroupAddon("Gas ($/Therm)",
                                                  addon_type="prepend"),
-                             dbc.Input(id='ann_gas_cost_input')]),
+
+                             dbc.Input(id='ann_gas_cost_input', value=input_std_dict_rates['Gas'])]),
 
                         dbc.InputGroup(
                             [dbc.InputGroupAddon("Steam ($/mLbs)",
                                                  addon_type="prepend"),
-                             dbc.Input(id='ann_steam_cost_input')]),
+                             dbc.Input(id='ann_steam_cost_input', value=input_std_dict_rates['Steam'])]),
 
                     ], width=4), ]),
+                dbc.Row([
+                    dbc.Col([
+                        dbc.Button('Calculate', id='submit_btn'),
 
+                    ], width=4, id='submit_col'),
+                    dbc.Col([], width=4),
+                    dbc.Col([
+
+                        daq.BooleanSwitch(
+                            id='rate_bool',
+                            on=True),
+                        html.Div("Use Typical Rates for Commercial Office Buildings", id='typ_rate_text'),
+
+                    ], width=4, id='inp_bot_right_col'),
+
+                ])
             ])
         ])
     ]),
@@ -170,20 +196,34 @@ app.layout = dbc.Container([
 
             dbc.Row(id='figrow_toggle', children=[
 
-                dbc.Col([dbc.Checklist(options=[
-                    {"label": "By Area", "value": 1},
-                ],
-                    values=[], id='cost_toggle'), ], width=4, className='col_nopad', id='cost_toggle_col'),
-                dbc.Col([dcc.Checklist(options=[
-                    {"label": "By Area1", "value": 1},
-                ],
-                    values=[], id='carbon_toggle'), ], width=4, className='col_nopad', id='carbon_toggle_col'),
                 dbc.Col([
-                    dcc.Checklist(options=[
-                        {"label": "By Area", "value": 1},
-                    ],
-                        values=[], id='eui_toggle'), ], width=4, className='col_nopad', id='eui_toggle_col'),
+                    html.Div("Normalize by Area", className='norm_tag'),
+                    daq.BooleanSwitch(  # todo callbacks and format
+                        id='norm_bool',
+                        on=False)],
+                    width=12, className='col_nopad', id='norm_toggle_col'
+
+                ),
+
             ]),
+
+            # dbc.Col([
+            #     daq.BooleanSwitch(  # todo callbacks and format
+            #         id='cost_bool',
+            #         on=False)], width=4, className='col_nopad', id='cost_toggle_col'),
+            #
+            # dbc.Col([
+            #
+            #     daq.BooleanSwitch(  # todo callbacks and format
+            #         id='carbon_bool',
+            #         on=False
+            #     )
+            #     , ], width=4, className='col_nopad', id='carbon_toggle_col'),
+            # dbc.Col([
+            #     daq.BooleanSwitch(  # todo callbacks and format
+            #         id='eui_bool',
+            #         on=True
+            #     )], width=4, className='col_nopad', id='eui_toggle_col'),
 
             dbc.Row(id='figrow2', children=[
 
@@ -195,25 +235,39 @@ app.layout = dbc.Container([
 
     ], style={'visibility': 'hidden'}, ),
     dbc.Row(id='bottom_row', children=[
+        html.H6("Notes and Clarifications"),
 
-        html.P("•	The above calculator is based on AKFs understanding and interpretation of the aged version of NYC Intro 1253c (This calculator provides an approximation of the impact of the new law and should not be relied on as actual results may vary) "),
-        html.P("•	Emission limits for 2035 – 2050 are not yet itemized for each individual occupancy group.  The fine identified here is based on the average value for all covered buildings that is identified in the law, and is subject to change."),
-        html.P("•	The bill mandates an advisory board be established, who’s purpose will be to provide advice and recommendations to the commissioner and to the mayor’s office of long term planning and sustainability.  These recommendations may ultimately change the carbon limits and associated fines depicted above."),
-        html.P("•	The law as written also outlines a number of possible adjustments to the annual building emissions limit.  These adjustment may be granted if capital improvements required for compliance are not reasonably possible, do not allow for a reasonable financial return, are a result of special circumstances related to the use of the building, or apply specifically for not-for-profit hospitals and healthcare facilities.  However the department is responsible for determining if the adjustments apply for each covered building."),
+        html.P(
+            "•	The above calculator is based on AKFs understanding and interpretation of the aged version of NYC Intro 1253c (This calculator provides an approximation of the impact of the new law and should not be relied on as actual results may vary) "),
+        html.P(
+            "•	Emission limits for 2035 – 2050 are not yet itemized for each individual occupancy group.  The fine identified here is based on the average value for all covered buildings that is identified in the law, and is subject to change."),
+        html.P(
+            "•	The bill mandates an advisory board be established, who’s purpose will be to provide advice and recommendations to the commissioner and to the mayor’s office of long term planning and sustainability.  These recommendations may ultimately change the carbon limits and associated fines depicted above."),
+        html.P(
+            "•	The law as written also outlines a number of possible adjustments to the annual building emissions limit.  These adjustment may be granted if capital improvements required for compliance are not reasonably possible, do not allow for a reasonable financial return, are a result of special circumstances related to the use of the building, or apply specifically for not-for-profit hospitals and healthcare facilities.  However the department is responsible for determining if the adjustments apply for each covered building."),
+        html.P(
+            '•	This tool currently only includes Electricity, Natural Gas, and Steam as fuel source inputs. Future versions will include Fuel Oil and will continue to provide updates alongside revisions to NYC Intro 1253c.'),
 
     ]),
-
     dcc.Store(id='split_df_stores')
 ], fluid=False)
 
 
-@app.callback(Output('collapse', 'is_open'),
-              [Input('submit_btn', 'n_clicks')])
-def toggle_collapse(nclicks):
-    if (nclicks % 2) == 0:
-        return True
+@app.callback(
+    [
+        Output('ann_kwh_cost_input', 'value'),
+        Output('ann_gas_cost_input', 'value'),
+        Output('ann_steam_cost_input', 'value'),
+    ],
+    [
+        Input('rate_bool', 'on'),
+    ]
+)
+def populate_rates(stdbool):
+    if stdbool:
+        return (input_std_dict_rates['Elec'], input_std_dict_rates['Gas'], input_std_dict_rates['Steam'])
     else:
-        return False
+        return ('', '', '')
 
 
 @app.callback(
@@ -227,20 +281,28 @@ def toggle_collapse(nclicks):
     ],
     [
         Input("submit_btn", "n_clicks"),
-        Input('bldg_type', 'value'),
-        Input('area_input', 'value'),
-        Input('ann_kwh_input', 'value'),
-        Input('ann_gas_input', 'value'),
-        Input('ann_steam_input', 'value'),
-        Input('ann_kwh_cost_input', 'value'),
-        Input('ann_gas_cost_input', 'value'),
-        Input('ann_steam_cost_input', 'value'),
-        Input('rate_toggle', 'values'),
-        Input('cost_toggle', 'value'),
-        Input('carbon_toggle', 'value'),
-        Input('eui_toggle', 'value'),
-    ])
+        Input('norm_bool', 'on'),
+        # Input('cost_bool', 'on'),
+        # Input('carbon_bool', 'on'),
+        # Input('eui_bool', 'on'),
+    ],
+    [
+        State('bldg_type', 'value'),
+        State('area_input', 'value'),
+        State('ann_kwh_input', 'value'),
+        State('ann_gas_input', 'value'),
+        State('ann_steam_input', 'value'),
+        State('ann_kwh_cost_input', 'value'),
+        State('ann_gas_cost_input', 'value'),
+        State('ann_steam_cost_input', 'value'),
+    ],
+
+)
 def make_frame(n_clicks,
+               norm_toggle,
+               # cost_toggle,
+               # carbon_toggle,
+               # eui_toggle,
                bldg_type,
                area_input,
                ann_kwh_input,
@@ -249,34 +311,22 @@ def make_frame(n_clicks,
                ann_kwh_cost_input,
                ann_gas_cost_input,
                ann_steam_cost_input,
-               rate_toggle,
-               cost_toggle,
-               carbon_toggle,
-               eui_toggle
+
                ):
     input_cons_dict = {
         'Elec': ann_kwh_input,
         'Gas': ann_gas_input,
         'Steam': ann_steam_input
     }
-
-
-
-    if rate_toggle == ["Y"]:
-        bldg = parse.Bldg(area_input,
-                          bldg_type,
-                          input_cons_dict).to_frame()
-
-    else:
-        input_rate_dict = {
-            'Elec': ann_kwh_cost_input,  # $ / kWh
-            'Gas': ann_gas_cost_input,  # $ / Therm
-            'Steam': ann_steam_cost_input,  # $ / MMBtu
-        }
-        bldg = parse.Bldg(area_input,
-                          bldg_type,
-                          input_cons_dict,
-                          input_rate_dict).to_frame()
+    input_rate_dict = {
+        'Elec': ann_kwh_cost_input,  # $ / kWh
+        'Gas': ann_gas_cost_input,  # $ / Therm
+        'Steam': ann_steam_cost_input,  # $ / MMBtu
+    }
+    bldg = parse.Bldg(area_input,
+                      bldg_type,
+                      input_cons_dict,
+                      input_rate_dict).to_frame()
 
     cost = bldg[(bldg['Table'] == 'Cost') & (bldg['Value'] != 0)]
     carbon = bldg[(bldg['Table'] == 'Carbon') & (bldg['Value'] != 0)]
@@ -284,9 +334,9 @@ def make_frame(n_clicks,
     co2limit = bldg[bldg['Table'] == 'CO2 Limit']
     fine = bldg[bldg['Table'] == 'Annual Fine']
 
-    cost_pie = parse.make_cost_pie(cost)
-    carbon_pie = parse.make_carbon_pie(carbon)
-    eui_pie = parse.make_eui_pie(eui)
+    cost_pie = parse.make_cost_pie(cost, float(area_input), norm=norm_toggle)
+    carbon_pie = parse.make_carbon_pie(carbon, float(area_input), norm=norm_toggle)
+    eui_pie = parse.make_eui_pie(eui, float(area_input), norm=norm_toggle)
 
     carbon_bullet = parse.make_carbon_bullet(carbon, co2limit, fine)
     cost_bar = parse.make_cost_bar(fine, cost)

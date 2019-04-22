@@ -18,12 +18,20 @@ limit_dict.index = limits['DOB Occupancy groups']
 limit_dict = limits[['2024-2029', '2030-2034', '2035-2050 (est)']].astype(float)
 limit_dict = limit_dict.T.to_dict()
 
-piedims = 200
-piemargins = {'t': 40,
-              'b': 40,
-              'l': 40,
-              'r': 40
-              }
+piewidth = 200
+pieheight = 250
+
+piemargins = go.layout.Margin(
+    l=50,
+    r=50,
+    b=10,
+    t=50,
+
+)
+
+
+
+
 
 # default 80
 piecolors = ['rgb(56, 151, 170)', 'rgb(83, 224, 120)', 'rgb(242, 224, 109)']
@@ -148,22 +156,32 @@ class Bldg:
 
 
 
-def make_cost_pie(cost):
-    cost_trace = go.Pie(values=cost['Value'].round(0),
+def make_cost_pie(cost, area, norm=False):
+
+    if norm:
+        title = 'Cost/sf ($)'
+        values = round((cost['Value'].round(0) / area), 2)
+    else:
+        title = 'Cost ($)'
+        values = cost['Value'].round(0)
+    #'text': "${0}".format("{:,}".format(val) for val in cost['SubTable'],
+    cost_trace = go.Pie(values=values,
                         labels=cost['SubTable'],
-                        hole=0.5,
-                        text=cost['SubTable'],
+                        hole=0.4,
+                        text=cost['Value'],
                         marker={'colors': piecolors},
                         showlegend=False,
                         hoverinfo='label+value+percent',
+                        textinfo='label+value',
+                        textposition='outside',
                         )
     cost_layout = go.Layout(dict(
                        font={'family': 'Futura LT BT'},
-                       title='Cost ($)',
+                       title=title,
                        paper_bgcolor='rgba(0,0,0,0)',
                        plot_bgcolor='rgba(0,0,0,0)',
-                       width=piedims,
-                       height=piedims,
+                       width=piewidth,
+                       height=pieheight,
                        xaxis={'showgrid': False},
                        yaxis={'showgrid': False},
         margin=piemargins
@@ -173,22 +191,32 @@ def make_cost_pie(cost):
 
 
 
-def make_carbon_pie(carbon):
-    carbon_trace = go.Pie(values=carbon['Value'].round(0),
+def make_carbon_pie(carbon, area, norm=False):
+
+    if norm:
+        title = 'Carbon (tCO2/sf)'
+        values = round((carbon['Value'].round(0) / area), 4)
+    else:
+        title = 'Carbon (tCO2)'
+        values = carbon['Value'].round(0)
+
+    carbon_trace = go.Pie(values=values,
                           labels=carbon['SubTable'],
                           text=carbon['SubTable'],
-                          hole=0.5,
+                          hole=0.4,
                           marker={'colors': piecolors},
                           showlegend=False,
-                          hoverinfo='label+value+percent'
+                          hoverinfo='label+value+percent',
+                          textinfo='label+value',
+                          textposition='outside',
                           )
     carbon_layout = go.Layout(dict(
         font={'family': 'Futura LT BT'},
-        title='Carbon (tCO2)',
+        title=title,
         paper_bgcolor='rgba(0,0,0,0)',
         plot_bgcolor='rgba(0,0,0,0)',
-        width=piedims,
-        height=piedims,
+        width=piewidth,
+        height=pieheight,
         xaxis={'showgrid': False},
         yaxis={'showgrid': False},
         margin=piemargins
@@ -197,23 +225,32 @@ def make_carbon_pie(carbon):
     return carbon_fig
 
 
-def make_eui_pie(eui):
-    eui_trace = go.Pie(values=eui['Value'].round(0),
+def make_eui_pie(eui, area, norm=True):
+    if norm:
+        title = 'EUI (kBtu/sf/Yr)'
+        values = eui['Value'].round(0)
+    else:
+        title = 'Site Energy (MMBtu)'
+        values = eui['Value'].round(0) * area * .001 # * for eui cost only
+
+    eui_trace = go.Pie(values=values,
                        labels=eui['SubTable'],
                        text=eui['SubTable'],
-                       hole=0.5,
+                       hole=0.4,
                        marker={'colors': piecolors},
                        showlegend=False,
-                       hoverinfo='label+value+percent'
+                       hoverinfo='label+value+percent',
+                       textinfo='label+value',
+                       textposition='outside',
                        )
 
     eui_layout = go.Layout(dict(
         font={'family': 'Futura LT BT'},
-        title='EUI (kBtu/sf/Yr)',
+        title=title,
         paper_bgcolor='rgba(0,0,0,0)',
         plot_bgcolor='rgba(0,0,0,0)',
-        width=piedims,
-        height=piedims,
+        width=piewidth,
+        height=pieheight,
         xaxis={'showgrid': False},
         yaxis={'showgrid': False},
         margin=piemargins
@@ -243,7 +280,7 @@ def make_carbon_bullet(carbon, co2limit, fine):
                        font={'family': 'Futura LT BT'},
                        legend={'x': 1.07},
                        width=300,
-                       height=600,
+                       height=700,
                        margin={'l': 45,
                                'r': 40,
                                't': 80,
@@ -361,13 +398,16 @@ def make_carbon_bullet(carbon, co2limit, fine):
 
 def make_cost_bar(fine, cost):
     data = []
+    width = 0.6
 
     try:
         elec_costs = round(cost.iloc[0, :]['Value'].round())
         elec_traces = go.Bar(x=fine.SubTable,
                              y=[round(elec_costs)] * len(fine.SubTable),
                              name='Elec ($)',
-                             marker={'color': piecolors[0]})
+                             marker={'color': piecolors[0],},
+                             width=width
+                             )
         data.append(elec_traces)
     except:
         pass
@@ -377,7 +417,9 @@ def make_cost_bar(fine, cost):
         gas_traces = go.Bar(x=fine.SubTable,
                             y=[round(gas_costs)] * len(fine.SubTable),
                             name='Gas ($)',
-                            marker={'color': piecolors[1]})
+                            marker={'color': piecolors[1]},
+                            width=width
+                            )
         data.append(gas_traces)
     except:
         pass
@@ -387,7 +429,9 @@ def make_cost_bar(fine, cost):
         steam_traces = go.Bar(x=fine.SubTable,
                               y=[round(steam_costs)] * len(fine.SubTable),
                               name='Steam ($)',
-                              marker={'color': piecolors[2]})
+                              marker={'color': piecolors[2]},
+                              width=width
+                              )
         data.append(steam_traces)
     except:
         pass
@@ -398,13 +442,14 @@ def make_cost_bar(fine, cost):
     fine_traces = go.Bar(x=fine.SubTable,
                          y=round(fine.Value),
                          name='Carbon Fine ($)',
-                         marker={'color': 'rgb(200, 83, 94)'}
+                         marker={'color': 'rgb(200, 83, 94)'},
+                         width=width
                          )
 
     data.append(fine_traces)
 
     layout = go.Layout(barmode='stack',
-                       width=600,
+                       width=550,
                        height=400,
                        title=go.layout.Title(text='Annual Building Utility Cost + Carbon Fines per Year',
                                        y=0.9),
