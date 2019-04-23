@@ -36,6 +36,9 @@ piemargins = go.layout.Margin(
 # default 80
 piecolors = ['rgb(56, 151, 170)', 'rgb(83, 224, 120)', 'rgb(242, 224, 109)']
 
+fade_val = 0.5
+piecolors_fade = ['rgba(56, 151, 170, {0})'.format(fade_val), 'rgba(83, 224, 120, {0})'.format(fade_val), 'rgba(242, 224, 109, {0})'.format(fade_val)]
+
 
 
 # static dictionaries/lookups
@@ -405,7 +408,7 @@ def make_cost_bar(fine, cost):
         elec_traces = go.Bar(x=fine.SubTable,
                              y=[round(elec_costs)] * len(fine.SubTable),
                              name='Elec ($)',
-                             marker={'color': piecolors[0],},
+                             marker={'color': [piecolors[0], piecolors[0], piecolors_fade[0]]},
                              width=width
                              )
         data.append(elec_traces)
@@ -417,7 +420,7 @@ def make_cost_bar(fine, cost):
         gas_traces = go.Bar(x=fine.SubTable,
                             y=[round(gas_costs)] * len(fine.SubTable),
                             name='Gas ($)',
-                            marker={'color': piecolors[1]},
+                            marker={'color': [piecolors[1], piecolors[1], piecolors_fade[1]]},
                             width=width
                             )
         data.append(gas_traces)
@@ -429,7 +432,7 @@ def make_cost_bar(fine, cost):
         steam_traces = go.Bar(x=fine.SubTable,
                               y=[round(steam_costs)] * len(fine.SubTable),
                               name='Steam ($)',
-                              marker={'color': piecolors[2]},
+                              marker={'color': [piecolors[2],piecolors[2], piecolors_fade[2]]},
                               width=width
                               )
         data.append(steam_traces)
@@ -442,7 +445,7 @@ def make_cost_bar(fine, cost):
     fine_traces = go.Bar(x=fine.SubTable,
                          y=round(fine.Value),
                          name='Carbon Fine ($)',
-                         marker={'color': 'rgb(200, 83, 94)'},
+                         marker={'color': ['rgba(200, 83, 94, 1)', 'rgba(200, 83, 94, 1)', 'rgba(200, 83, 94, {0})'.format(fade_val)]},
                          width=width
                          )
 
@@ -504,7 +507,7 @@ def make_cost_bar(fine, cost):
         {
             'x': 2,
             'y': list(fine['Value'])[2] + cost['Value'].sum() + y_modifier,
-            'text': "${0}/yr".format("{:,}".format(round(list(fine['Value'])[2]))),
+            'text': "${0}/yr (est)".format("{:,}".format(round(list(fine['Value'])[2]))),
             'showarrow': False,
             'align': 'center',
             'width': 100,

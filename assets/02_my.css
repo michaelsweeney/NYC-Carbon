@@ -284,6 +284,9 @@ cursor: pointer;
 line-height: 24.5px !important;
 height: 24.5px !important;
 background-color: rgb(237, 244, 255);
+
+
+
 }
 
 #bldg_type .Select-value {
@@ -304,7 +307,7 @@ line-height: 22.5px !important;
 
 #bldg_area_group{
 padding-top: 0px;
-margin-top: 0px;
+margin-top: -1px;
 border-bottom-left-radius: 2.5px !important;
 border-bottom-right-radius: 2.5px !important;
 border-top-left-radius: 2.5px !important;
@@ -337,16 +340,19 @@ vertical-align: center !important;
 
 }
 
-
-
-
 #bldg_type .Select-control {
 border-top-right-radius: 2.5px !important;
 border-top-left-radius: 2.5px !important;
 border-bottom-right-radius: 2.5px !important;
 border-bottom-left-radius: 2.5px !important;
-
+border-bottom-color: rgb(206,212,218) !important;
+border-top-color: rgb(206,212,218) !important;
+border-left-color: rgb(206,212,218) !important;
+border-right-color: rgb(206,212,218) !important;
 }
+
+
+
 
 
 
@@ -369,16 +375,13 @@ display: inline-block;
 
 
 #bldg_type_question {
-margin-left: 1px;
+margin-left: 3px;
 text-align: right;
 text-decoration: none !important;
 font-size: 8px !important;
-margin-bottom: 5px;
+margin-bottom: 4px;
 
 }
-
-
-
 
 
 
