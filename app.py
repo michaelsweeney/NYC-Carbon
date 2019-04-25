@@ -120,16 +120,16 @@ app.layout = dbc.Container([
                                                    clearable=False),
                                       dbc.InputGroup(
                                           [dbc.InputGroupAddon("Bldg Area", addon_type="prepend"),
-                                           dbc.Input(id='area_input', value='135000')], id='bldg_area_group'), ],
+                                           dbc.Input(id='area_input', value=6000)], id='bldg_area_group'), ],
                             width=4),
 
                     dbc.Col(children=[html.Div(children=["Annual Consumption"], className='form_header'),
                                       dbc.InputGroup(
                                           [dbc.InputGroupAddon("Elec (kWh)", addon_type="prepend"),
-                                           dbc.Input(id='ann_kwh_input', value='1897217')]),
+                                           dbc.Input(id='ann_kwh_input', value=100000)]),
                                       dbc.InputGroup(
                                           [dbc.InputGroupAddon("Gas (Therms)", addon_type="prepend"),
-                                           dbc.Input(id='ann_gas_input', value=32103)]),
+                                           dbc.Input(id='ann_gas_input', value=3000)]),
 
                                       dbc.InputGroup(
                                           [dbc.InputGroupAddon("Steam (mLbs)", addon_type="prepend"),
@@ -178,6 +178,7 @@ app.layout = dbc.Container([
             ])
         ])
     ]),
+
 
     dbc.Row(id='bodyrow', children=[
 
@@ -311,8 +312,10 @@ def make_frame(n_clicks,
                ann_kwh_cost_input,
                ann_gas_cost_input,
                ann_steam_cost_input,
-
                ):
+    if n_clicks == None:
+        print (n_clicks)
+
     input_cons_dict = {
         'Elec': ann_kwh_input,
         'Gas': ann_gas_input,
