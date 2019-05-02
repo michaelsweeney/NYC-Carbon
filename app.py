@@ -208,24 +208,6 @@ app.layout = dbc.Container([
 
             ]),
 
-            # dbc.Col([
-            #     daq.BooleanSwitch(  # todo callbacks and format
-            #         id='cost_bool',
-            #         on=False)], width=4, className='col_nopad', id='cost_toggle_col'),
-            #
-            # dbc.Col([
-            #
-            #     daq.BooleanSwitch(  # todo callbacks and format
-            #         id='carbon_bool',
-            #         on=False
-            #     )
-            #     , ], width=4, className='col_nopad', id='carbon_toggle_col'),
-            # dbc.Col([
-            #     daq.BooleanSwitch(  # todo callbacks and format
-            #         id='eui_bool',
-            #         on=True
-            #     )], width=4, className='col_nopad', id='eui_toggle_col'),
-
             dbc.Row(id='figrow2', children=[
 
                 dbc.Col(id='cost_col', children=[dcc.Graph(id='cost_bar', config=config)
@@ -336,6 +318,7 @@ def make_frame(n_clicks,
     eui = bldg[(bldg['Table'] == 'EUI') & (bldg['Value'] != 0)]
     co2limit = bldg[bldg['Table'] == 'CO2 Limit']
     fine = bldg[bldg['Table'] == 'Annual Fine']
+    print (cost)
 
     cost_pie = parse.make_cost_pie(cost, float(area_input), norm=norm_toggle)
     carbon_pie = parse.make_carbon_pie(carbon, float(area_input), norm=norm_toggle)
