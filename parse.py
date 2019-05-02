@@ -12,6 +12,11 @@ import plotly.offline as py
 
 import plotly.graph_objs as go
 
+
+
+
+
+
 limits = pd.read_csv('nyc_carbon_limits.csv')
 limit_dict = limits
 limit_dict.index = limits['DOB Occupancy groups']

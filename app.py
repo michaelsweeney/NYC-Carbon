@@ -28,6 +28,10 @@ import webbrowser
 import dash_daq as daq
 from parse import input_std_dict_rates
 
+
+
+
+
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
 
@@ -39,7 +43,11 @@ app.scripts.config.serve_locally = True
 
 config = {'showLink': False,
           'displayModeBar': False}
+
 app.title = "NYC 80x50 Energy + Performance estimator"
+
+
+
 
 app.layout = dbc.Container([
     dbc.Navbar(id='navbar', children=[
@@ -318,7 +326,7 @@ def make_frame(n_clicks,
     eui = bldg[(bldg['Table'] == 'EUI') & (bldg['Value'] != 0)]
     co2limit = bldg[bldg['Table'] == 'CO2 Limit']
     fine = bldg[bldg['Table'] == 'Annual Fine']
-    print (cost)
+
 
     cost_pie = parse.make_cost_pie(cost, float(area_input), norm=norm_toggle)
     carbon_pie = parse.make_carbon_pie(carbon, float(area_input), norm=norm_toggle)
