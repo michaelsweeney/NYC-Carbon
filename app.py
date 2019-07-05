@@ -107,7 +107,7 @@ app.layout = dbc.Container([
 
                                                        {'label': 'A (Assembly)', 'value': 'A'},
                                                        {'label': 'B (Business)', 'value': 'B (normal)'},
-                                                       {'label': 'B (Other)', 'value': 'B (healthcare)'},
+                                                       {'label': 'B (Healthcare)', 'value': 'B (healthcare)'},
                                                        # todo footnote
                                                        {'label': 'E (Educational)', 'value': 'E'},
                                                        {'label': 'F (Factory/Industrial)', 'value': 'F'},
